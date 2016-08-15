@@ -23,7 +23,7 @@ public class Server {
         Server s = new Server();
         s.startRunning();
     }
-    public void startRunning() {
+    private void startRunning() {
 
         try {
             server = new ServerSocket(PORT);
@@ -63,6 +63,10 @@ public class Server {
         do {
             try {
                 message = input.readObject();
+
+                // We can check the message received from clients before doing anything with it
+                // If it isn't of an obj type we are expecting we can throw this error
+                // to avoid any sort of maliciousness
             } catch(ClassNotFoundException cnfe) {
                 System.out.println("Received message is not of a recognized class.");
                 chatting = false;
