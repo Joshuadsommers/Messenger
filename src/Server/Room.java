@@ -8,11 +8,12 @@ import java.net.InetAddress;
  */
 public class Room {
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
     // Room is created from server with all InetAddresses as param
     // When users are added to a room after room is created they will use addUser() and we need to append to addresses
->>>>>>> refs/remotes/Joshuadsommers/master
+//>>>>>>> refs/remotes/Joshuadsommers/master
+
     public Room(InetAddress... addresses){
         for( InetAddress a : addresses) {
             // send message obj to each client in room
