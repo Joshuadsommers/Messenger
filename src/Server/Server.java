@@ -20,9 +20,13 @@ public class Server {
 
 
     public static void main(String[] args) {
+
         Server s = new Server();
         s.startRunning();
+
+        new Server().startRunning();
     }
+
     public void startRunning() {
 
         try {

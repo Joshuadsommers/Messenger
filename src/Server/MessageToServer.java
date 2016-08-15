@@ -1,5 +1,7 @@
 package Server;
 
+import objects.Message;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ import java.util.Date;
 public class MessageToServer {
     String from;
     String room;
-    String message;
+    Message message;
 
     Timestamp time;
 
@@ -21,7 +23,7 @@ public class MessageToServer {
         return room;
     }
 
-    public String getMessage() {
+    public Message getMessage() {
         return message;
     }
 
@@ -29,7 +31,7 @@ public class MessageToServer {
         return time;
     }
 
-    public MessageToServer(String r, String f, String m) {
+    public MessageToServer(String r, String f, Message m) {
         this.room = r;
         this.from = f;
         this.message = m;
