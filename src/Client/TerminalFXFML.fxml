@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="EXCLUSION" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.terminal.TerminalController">
+  <children>
+    <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="1121.0">
+      <items>
+        <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" smooth="true" />
+        <Label text="Terminal [Syndicate]">
+          <font>
+            <Font name="Georgia" size="12.0" />
+          </font>
+        </Label>
+      </items>
+    </ToolBar>
+    <ToolBar layoutX="1121.0" layoutY="0.0" prefWidth="78.0">
+      <items>
+        <Button fx:id="minimizeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="" />
+        <Button fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="" />
+      </items>
+    </ToolBar>
+    <SplitPane focusTraversable="true" orientation="VERTICAL" prefHeight="669.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <TabPane layoutX="-2.0" layoutY="0.0" prefHeight="667.0" prefWidth="1200.0" tabClosingPolicy="ALL_TABS">
+              <tabs>
+                <Tab closable="false" text="Untitled Tab 1">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <SplitPane focusTraversable="true" layoutX="13.0" layoutY="14.0" orientation="VERTICAL" prefHeight="609.0" prefWidth="1176.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                <ListView fx:id="onlineList" layoutX="916.0" layoutY="43.0" prefHeight="478.0" prefWidth="237.0" />
+                                <Button fx:id="joinRoomButton" layoutX="917.0" layoutY="538.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="237.0" text="Join Room">
+                                  <font>
+                                    <Font name="Verdana" size="12.0" fx:id="x1" />
+                                  </font>
+                                </Button>
+                                <Label layoutX="965.0" layoutY="22.0" text="Members Present [0]">
+                                  <font>
+                                    <Font name="Verdana Bold" size="12.0" fx:id="x2" />
+                                  </font>
+                                </Label>
+                                <Separator layoutX="903.0" layoutY="15.0" minHeight="1.0" prefHeight="1.0" prefWidth="259.0" />
+                                <Button fx:id="createRoomButton" font="$x1" layoutX="918.0" layoutY="573.0" mnemonicParsing="false" prefWidth="237.0" text="Create Room" />
+                                <TextField fx:id="chatLine" layoutX="15.0" layoutY="573.0" prefWidth="797.0" />
+                                <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" pannable="true" prefHeight="507.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="880.0" vbarPolicy="AS_NEEDED">
+                                  <content>
+                                    <VBox fx:id="chatWindow" prefHeight="503.0" prefWidth="877.0" />
+                                  </content>
+                                </ScrollPane>
+                                <Button font="$x1" layoutX="824.0" layoutY="573.0" mnemonicParsing="false" prefWidth="76.0" text="Send" />
+                                <ComboBox layoutX="148.0" layoutY="537.0" prefHeight="21.0001220703125" prefWidth="113.0" promptText="Verdana">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                                <ToggleButton font="$x2" layoutX="16.0" layoutY="537.0" mnemonicParsing="false" prefHeight="20.9998779296875" text="B" />
+                                <ToggleButton layoutX="57.0" layoutY="537.0" mnemonicParsing="false" prefHeight="20.9998779296875" text="I">
+                                  <font>
+                                    <Font name="Verdana Italic" size="12.0" />
+                                  </font>
+                                </ToggleButton>
+                                <ComboBox layoutX="91.0" layoutY="537.0" minWidth="32.0" prefHeight="21.0" prefWidth="47.0" promptText="12">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                                <ComboBox layoutX="275.0" layoutY="537.0" prefHeight="21.0001220703125" prefWidth="113.0" promptText="Pale Blue" rotate="0.0">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                                <Separator layoutX="902.0" layoutY="13.0" orientation="VERTICAL" prefHeight="594.0" />
+                                <Separator layoutX="1160.0" layoutY="13.0" orientation="VERTICAL" prefHeight="594.0" />
+                              </children>
+                            </AnchorPane>
+                          </items>
+                        </SplitPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab closable="true" text="Untitled Tab 2">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>
