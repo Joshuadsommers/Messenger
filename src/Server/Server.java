@@ -27,11 +27,22 @@ public class Server {
 
 
     public static void main(String[] args) {
+
         Server s = new Server();
         s.startRunning();
-    }
 
+        new Server().startRunning();
+    }
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+
+    public void startRunning() {
+=======
+>>>>>>> origin/master
     private void startRunning() {
+>>>>>>> refs/remotes/Joshuadsommers/master
 
         System.out.println("Server started.");
 

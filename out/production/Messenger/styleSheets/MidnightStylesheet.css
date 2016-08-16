@@ -1,0 +1,68 @@
+
+
+.text-area .content{
+
+      -fx-background-color: white;
+
+}
+
+.text-area {
+    -fx-background-color: white;
+    text-area-background: white;
+    -fx-text-fill: rgb(5, 5, 5);
+    -fx-highlight-text-fill: white;
+}
+
+.root {
+    -fx-accent: rgb(40,0,0);
+    -fx-focus-color: rgb(40,0,0);
+
+}
+
+.text-field:focused {
+    -fx-border-color: rgb(40,0,0);
+}
+
+.menu-item .label {
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-background-color: black;
+}
+
+.menu-bar .label{
+    -fx-text-fill: white;
+}
+
+.menu-item:focused {
+     -fx-background-color: darkgray;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+.menu:hover {
+	-fx-background-color: darkgray;
+}
+
+.menu:hover .label{
+    -fx-text-fill: white;
+}
+
+.menu:showing {
+    -fx-background-color: darkgray;
+}
+
+.menu:showing .label{
+    -fx-text-fill: white;
+}
+
+
+.context-menu {
+      -fx-background-color:
+        linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%);
+    -fx-font-family: "Helvetica";
+    -fx-text-fill: white;
+}

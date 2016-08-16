@@ -5,7 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
+<<<<<<< HEAD
  * Created by Josh on 8/15/2016.
+=======
+ * Created by Adam on 8/14/2016.
+>>>>>>> origin/master
  */
 public class Message {
 
@@ -54,5 +58,8 @@ public class Message {
     public String getMessage() {
         return message;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }

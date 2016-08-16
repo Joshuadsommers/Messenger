@@ -1,10 +1,14 @@
 package Server;
 
+<<<<<<< HEAD
 import objects.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+=======
+
+>>>>>>> origin/master
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -16,8 +20,11 @@ import java.util.HashSet;
  */
 public class Room implements Runnable {
 
+//<<<<<<< HEAD
+//=======
     // Room is created from server with all InetAddresses as param
     // When users are added to a room after room is created they will use addUser() and we need to append to addresses
+<<<<<<< HEAD
 
     private HashSet<User> users = new HashSet<>();
     //private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>();
@@ -76,6 +83,9 @@ public class Room implements Runnable {
     }
 
 
+=======
+//>>>>>>> refs/remotes/Joshuadsommers/master
+>>>>>>> origin/master
 
     public Room(InetAddress... addresses){
         for( InetAddress a : addresses) {
@@ -92,4 +102,6 @@ public class Room implements Runnable {
     public void removeUser(InetAddress a) {
         // Remove user from addresses
     }
+
+
 }
