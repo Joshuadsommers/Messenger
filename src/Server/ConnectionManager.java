@@ -18,7 +18,8 @@ import java.util.HashSet;
 
 public class ConnectionManager implements Runnable {
 
-    private HashMap<Integer, ArrayList<ObjectOutputStream>> activeRooms = new HashMap<>(); // Key is Room ID Number, Value is the Array of ObjectOutputStreams going to clients that are connected to that room.
+    //private HashMap<Integer, ArrayList<ObjectOutputStream>> activeRooms = new HashMap<>(); // Key is Room ID Number, Value is the Array of ObjectOutputStreams going to clients that are connected to that room.
+    private HashMap<Integer, Room> activeRooms = new HashMap<>();
 
     private HashMap<User, ObjectOutputStream> userStreams = new HashMap<>();
 

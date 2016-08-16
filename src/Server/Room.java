@@ -1,6 +1,13 @@
 package Server;
 
-<<<<<<< HEAD
+import enums.ServerMessage;
+import objects.ChatUser;
+import objects.Message;
+import objects.User;
+
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;<<<<<<< HEAD
 import objects.User;
 
 import java.io.IOException;
@@ -18,78 +25,62 @@ import java.util.HashSet;
 /**
  * Created by Josh on 8/15/2016.
  */
-public class Room implements Runnable {
+public class Room  {
 
     // Room is created from server with all InetAddresses as param
     // When users are added to a room after room is created they will use addUser() and we need to append to addresses
 
-    private HashSet<User> users = new HashSet<>();
-    //private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>();
+    private int key;
 
-    private HashSet<ObjectOutputStream> writers = new HashSet<>();
+    private String password;
+    private boolean passwordProtected = false;
 
-    private Socket socket;
+    private HashMap<Integer, ArrayList<ObjectOutputStream>> activeRooms = new HashMap<>(); // Key is Room ID Number, Value is the Array of ObjectOutputStreams going to clients that are connected to that room.
 
-    public Room(Socket socket) {
-        this.socket = socket;
+    private HashMap<User, ObjectOutputStream> userStreams = new HashMap<>();
+
+    public static ArrayList<User> activeUsers = new ArrayList<>(); // Global Array of all Active Users
+    //public static ArrayList<User> visibleUsers = new ArrayList<>(); // Users that are visible as online.
+
+    private HashSet<ObjectOutputStream> outputStreams = new HashSet<>();
+
+    private String title;
+
+    public Room(int key, String title){
+        this.key = key;
+        this.title = title;
     }
 
-    @Override
-    public void run() {
-        try {
+    public Room(int key, String title, boolean passwordProtected, String password){
 
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+        this.key = key;
+        this.title = title;
+        this.passwordProtected = passwordProtected;
+        this.password = password;
 
-            writers.add(out);
+    }
 
-            for (;;) {
-                //String input = in.readLine();
-                Object input = in.readObject();
-
-                if (input == null) {
-                    return;
-                }
-
-                writers.forEach(i -> {
-                    //String message = input;//"server: ") + input;
-                    try {
-                        i.writeObject(input);
-                        i.flush();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-
-
-
-                });
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e);
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        } finally {
+    public void sendMessage(Message message){
+        outputStreams.forEach(i -> {
             try {
-                socket.close();
-            } catch (IOException e) {
+                i.writeObject(message);
+                i.flush();
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-        }
-
+        });
     }
 
 
-=======
-//>>>>>>> refs/remotes/Joshuadsommers/master
->>>>>>> origin/master
-
-    public Room(InetAddress... addresses){
-        for( InetAddress a : addresses) {
-            // send message obj to each client in room
-        }
+    public void addUser(ChatUser user, ObjectOutputStream output){
+        userStreams.put(user, output);
     }
 
+    public void removeUser(ChatUser user){
+        userStreams.remove(user);
+        activeUsers.remove(user);
+       // if(user.visible) visibleUsers.remove(user);
+    }
 
 
     public void addUser(InetAddress a) {
@@ -101,4 +92,7 @@ public class Room implements Runnable {
     }
 
 
+    public int getKey() {
+        return key;
+    }
 }
