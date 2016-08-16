@@ -1,5 +1,6 @@
 package Server;
 
+import objects.ChatUser;
 import objects.MessageToServer;
 
 import java.io.EOFException;
@@ -8,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Josh on 8/15/2016.
@@ -20,21 +23,44 @@ public class Server {
     private ObjectInputStream input;
     private Socket connection;
 
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(100);
+
 
     public static void main(String[] args) {
         Server s = new Server();
         s.startRunning();
     }
+
     private void startRunning() {
 
+        System.out.println("Server started.");
+
+
+        try (ServerSocket listener = new ServerSocket(PORT)) {
+            for (;;) {
+                Socket socket = listener.accept();
+                if (!(socket == null) && socket.isBound()) {
+                    threadPool.execute(new ChatUser(socket));
+                    //JOptionPane.showMessageDialog(null, "ObsoleteUser has connected", "Connection", JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println(socket.getInetAddress());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        /*
         try {
             server = new ServerSocket(PORT);
             while(true) {
                 try {
+
                     // connect here
                     waitForConnection();
                     setupStreams();
                     whileChatting();
+
                 }catch(EOFException eof) {
                     System.out.println("Connection ended due to EOF exception");
                 }finally {
@@ -44,6 +70,10 @@ public class Server {
         } catch(IOException io) {
             io.printStackTrace();
         }
+        */
+
+
+
     }
 
     private void waitForConnection() throws IOException {
@@ -91,11 +121,14 @@ public class Server {
     }
 
     private void sendToRoom(Room r, MessageToServer m) {
+
+        /*
         try {
 
         } catch(IOException io) {
             System.out.println("Unable to send message to room.");
         }
+        */
     }
 
 }
