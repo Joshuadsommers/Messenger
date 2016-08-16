@@ -13,10 +13,14 @@ import java.util.Calendar;
  */
 public class Message {
 
+
+
     private DateFormat dateFormat = new SimpleDateFormat("[MM/dd/YYYY HH:mm:ss] ");
     private Calendar cal = Calendar.getInstance();
 
     private User user;
+
+    private int key;
 
     private boolean timestamp;
 
@@ -24,7 +28,8 @@ public class Message {
     private String timeStamp;
     private String message;
 
-    public Message(User user, String rawText, boolean timestamp){
+    public Message(int key, User user, String rawText, boolean timestamp){
+        this.key = key;
         this.user = user;
         this.rawText = rawText;
         this.timestamp = timestamp;
@@ -58,8 +63,12 @@ public class Message {
     public String getMessage() {
         return message;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
+    public int getKey() {
+        return key;
+    }
+
+    public String toString(){
+        return "<" + key + ">" + getMessage();
+    }
 }

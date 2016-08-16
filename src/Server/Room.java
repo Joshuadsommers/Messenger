@@ -20,11 +20,8 @@ import java.util.HashSet;
  */
 public class Room implements Runnable {
 
-//<<<<<<< HEAD
-//=======
     // Room is created from server with all InetAddresses as param
     // When users are added to a room after room is created they will use addUser() and we need to append to addresses
-<<<<<<< HEAD
 
     private HashSet<User> users = new HashSet<>();
     //private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>();
