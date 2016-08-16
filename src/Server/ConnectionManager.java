@@ -1,33 +1,42 @@
 package Server;
 
+import objects.ServerRequest;
 import objects.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Created by Josh on 8/15/2016.
+ * Created by Adam on 8/16/2016.
  */
-public class Room implements Runnable {
+public class ConnectionManager implements Runnable {
 
-    // Room is created from server with all InetAddresses as param
-    // When users are added to a room after room is created they will use addUser() and we need to append to addresses
+    private HashMap<Integer, ArrayList<ObjectOutputStream>> activeRooms = new HashMap<>(); // Key is Room ID Number, Value is the Array of ObjectOutputStreams going to clients that are connected to that room.
 
-    private HashSet<User> users = new HashSet<>();
-    //private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>();
+    public static ArrayList<User> activeUsers = new ArrayList<>(); // Global Array of all Active Users
+    public static ArrayList<User> visibleUsers = new ArrayList<>(); // Users that are visible as online.
 
-    private HashSet<ObjectOutputStream> writers = new HashSet<>();
+    public static ArrayList<String> history = new ArrayList<>(); // Global History of all messages received
+    public static HashSet<ObjectOutputStream> globalOutput = new HashSet<>();
+
 
     private Socket socket;
 
-    public Room(Socket socket) {
+    public ConnectionManager(Socket socket){
         this.socket = socket;
+    }
+
+    public void requestRoom(ServerRequest request){
+
+    }
+
+    public void createRoom(){
+
     }
 
     @Override
@@ -37,7 +46,7 @@ public class Room implements Runnable {
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
-            writers.add(out);
+            globalOutput.add(out);
 
             for (;;) {
                 //String input = in.readLine();
@@ -47,7 +56,7 @@ public class Room implements Runnable {
                     return;
                 }
 
-                writers.forEach(i -> {
+                globalOutput.forEach(i -> {
                     //String message = input;//"server: ") + input;
                     try {
                         i.writeObject(input);
@@ -62,14 +71,14 @@ public class Room implements Runnable {
 
             }
 
-        } catch (IOException e) {
-            System.out.println(e);
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        } finally {
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        finally {
             try {
                 socket.close();
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
@@ -77,19 +86,5 @@ public class Room implements Runnable {
 
 
 
-    public Room(InetAddress... addresses){
-        for( InetAddress a : addresses) {
-            // send message obj to each client in room
-        }
-    }
 
-
-
-    public void addUser(InetAddress a) {
-        // Add user to addresses
-    }
-
-    public void removeUser(InetAddress a) {
-        // Remove user from addresses
-    }
 }

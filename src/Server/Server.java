@@ -23,7 +23,7 @@ public class Server {
     private ObjectInputStream input;
     private Socket connection;
 
-    private static ExecutorService threadPool = Executors.newFixedThreadPool(100);
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(1000);
 
 
     public static void main(String[] args) {
@@ -40,9 +40,9 @@ public class Server {
             for (;;) {
                 Socket socket = listener.accept();
                 if (!(socket == null) && socket.isBound()) {
-                    threadPool.execute(new ChatUser(socket));
-                    //JOptionPane.showMessageDialog(null, "ObsoleteUser has connected", "Connection", JOptionPane.INFORMATION_MESSAGE);
-                    System.out.println(socket.getInetAddress());
+                  // threadPool.execute(new ChatUser(socket));
+                    threadPool.execute(new ConnectionManager(socket));
+                    System.out.println(socket.getInetAddress() + " has connected.");
                 }
             }
         } catch (IOException e) {
