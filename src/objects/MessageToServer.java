@@ -1,4 +1,4 @@
-package Server;
+package objects;
 
 import java.sql.Timestamp;
 import java.util.Date;
