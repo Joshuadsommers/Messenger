@@ -20,10 +20,18 @@ public class Server {
 
 
     public static void main(String[] args) {
+
         Server s = new Server();
         s.startRunning();
+
+        new Server().startRunning();
     }
+<<<<<<< HEAD
+
+    public void startRunning() {
+=======
     private void startRunning() {
+>>>>>>> refs/remotes/Joshuadsommers/master
 
         try {
             server = new ServerSocket(PORT);
