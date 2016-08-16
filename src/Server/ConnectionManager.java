@@ -1,8 +1,6 @@
 package Server;
 
-import objects.Message;
-import objects.ServerRequest;
-import objects.User;
+import objects.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,14 +18,6 @@ public class ConnectionManager implements Runnable {
 
     //private HashMap<Integer, ArrayList<ObjectOutputStream>> activeRooms = new HashMap<>(); // Key is Room ID Number, Value is the Array of ObjectOutputStreams going to clients that are connected to that room.
     private HashMap<Integer, Room> activeRooms = new HashMap<>();
-
-    private HashMap<User, ObjectOutputStream> userStreams = new HashMap<>();
-
-    public static ArrayList<User> activeUsers = new ArrayList<>(); // Global Array of all Active Users
-    public static ArrayList<User> visibleUsers = new ArrayList<>(); // Users that are visible as online.
-
-
-    public static HashSet<ObjectOutputStream> globalOutput = new HashSet<>();
 
     public static ArrayList<String> history = new ArrayList<>(); // Global History of all messages received
 
@@ -48,25 +38,12 @@ public class ConnectionManager implements Runnable {
             writeToRoom(message);
 
         }
+
     }
 
     private synchronized void writeToRoom(Message message){
 
-        activeRooms.get(message.getKey()).forEach(i -> {
-            try {
-                i.writeObject(message);
-                i.flush();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });
-
-    }
-
-
-    public void addToRoom(User user, int room){
-
-        activeRooms.get(room).add(userStreams.get(user)); // Gets the RoomKey from @Param 'room' and adds the OutputStream to the user's client from @Param 'user'
+        Rooms.sendMessage(message);
 
     }
 
@@ -79,7 +56,6 @@ public class ConnectionManager implements Runnable {
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
 
-            activeRooms.get(0).add(out);
 
             for (;;) {
 
@@ -91,7 +67,8 @@ public class ConnectionManager implements Runnable {
 
                 else if(input.getClass().equals(User.class)){
                     User user = (User) input;
-                    userStreams.put(user, out);
+                    ChatUser chatUser = new ChatUser(user, out);
+                    Rooms.addUser(chatUser, 0);
                 }
 
                 else readInput(input);
