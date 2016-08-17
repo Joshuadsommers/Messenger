@@ -1,5 +1,6 @@
 package objects;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +12,7 @@ import java.util.Calendar;
  * Created by Adam on 8/14/2016.
 >>>>>>> origin/master
  */
-public class Message {
+public class Message implements Serializable {
 
 
 

@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Created by Adam on 8/16/2016.
@@ -43,7 +42,7 @@ public class ConnectionManager implements Runnable {
 
     private synchronized void writeToRoom(Message message){
 
-        Rooms.sendMessage(message);
+        RoomHandler.sendMessage(message);
 
     }
 
@@ -68,7 +67,7 @@ public class ConnectionManager implements Runnable {
                 else if(input.getClass().equals(User.class)){
                     User user = (User) input;
                     ChatUser chatUser = new ChatUser(user, out);
-                    Rooms.addUser(chatUser, 0);
+                    RoomHandler.addUser(chatUser, 0);
                 }
 
                 else readInput(input);

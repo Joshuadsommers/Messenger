@@ -2,6 +2,7 @@ package Server;
 
 import objects.ChatUser;
 import objects.MessageToServer;
+import objects.RoomHandler;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class Server {
     public void startRunning() {
 
         System.out.println("Server started.");
+
+        RoomHandler.start();
 
 
         try (ServerSocket listener = new ServerSocket(PORT)) {
@@ -72,8 +75,6 @@ public class Server {
             io.printStackTrace();
         }
         */
-
-
 
     }
 

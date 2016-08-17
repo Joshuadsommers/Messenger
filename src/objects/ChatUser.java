@@ -2,16 +2,18 @@ package objects;
 
 import Server.Room;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Created by Adam on 8/16/2016.
+ */
+
+/**
+ *
+ *
+ * 
+ *
  */
 public class ChatUser {
 

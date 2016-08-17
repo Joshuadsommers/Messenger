@@ -22,28 +22,23 @@ public class MessageLabel extends Label {
 
     private void createListeners(){
         setOnMouseEntered(Event ->{
-<<<<<<< HEAD
             setScaleY(1.4); // On mouse hover, we make the message bigger as to express that the message is selected and can be double clicked
         });
 
         setOnMouseExited(Event ->{
             setScaleY(1.0); // Once the mouse is exited, we return the label to the normal size.
-=======
             setScaleY(1.4);
         });
 
         setOnMouseExited(Event ->{
             setScaleY(1.0);
->>>>>>> origin/master
         });
 
         setOnMouseClicked(Event ->{
             if(Event.getClickCount() == 2){
-<<<<<<< HEAD
                 System.out.println("Send Private Message to: " + message.getUser().getAlias()); // can hardcode functionality to private message the sender of the message the label is displaying
-=======
+
                 System.out.println("Send Private Message to; " + message.getUser().getAlias());
->>>>>>> origin/master
             }
         });
 

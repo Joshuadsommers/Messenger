@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="EXCLUSION" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Client.TerminalController">
+  <children>
+    <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="1121.0">
+      <items>
+        <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" smooth="true" />
+        <Label text="Terminal [Syndicate]">
+          <font>
+            <Font name="Georgia" size="12.0" />
+          </font>
+        </Label>
+      </items>
+    </ToolBar>
+    <ToolBar layoutX="1121.0" layoutY="0.0" prefWidth="78.0">
+      <items>
+        <Button fx:id="minimizeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="" />
+        <Button fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="" />
+      </items>
+    </ToolBar>
+    <SplitPane dividerPositions="" focusTraversable="true" orientation="VERTICAL" prefHeight="669.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <TabPane layoutX="-2.0" layoutY="24.0" prefHeight="643.0" prefWidth="1200.0" tabClosingPolicy="ALL_TABS">
+              <tabs>
+                <Tab closable="false" text="Global Chat">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <SplitPane dividerPositions="" focusTraversable="true" layoutX="13.0" layoutY="14.0" orientation="VERTICAL" prefHeight="584.0" prefWidth="1176.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="583.0" prefWidth="1174.0">
+                              <children>
+                                <ListView fx:id="onlineList" editable="false" focusTraversable="false" layoutX="914.0" layoutY="43.0" orientation="VERTICAL" prefHeight="452.0" prefWidth="237.0" />
+                                <Button fx:id="joinRoomButton" layoutX="912.0" layoutY="513.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="237.0" text="Join Room">
+                                  <font>
+                                    <Font name="Verdana" size="12.0" fx:id="x1" />
+                                  </font>
+                                </Button>
+                                <Label layoutX="965.0" layoutY="22.0" text="Members Present [0]">
+                                  <font>
+                                    <Font name="Verdana Bold" size="12.0" fx:id="x2" />
+                                  </font>
+                                </Label>
+                                <Separator layoutX="903.0" layoutY="15.0" minHeight="1.0" prefHeight="1.0" prefWidth="259.0" />
+                                <Button fx:id="createRoomButton" font="$x1" layoutX="912.0" layoutY="548.0" mnemonicParsing="false" prefWidth="237.0" text="Create Room" />
+                                <TextField fx:id="chatLine" layoutX="13.0" layoutY="548.0" prefWidth="793.0" />
+                                <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" opacity="1.0" pannable="false" prefHeight="480.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="880.0" vbarPolicy="AS_NEEDED" visible="true">
+                                  <content>
+                                    <VBox fx:id="chatWindow" prefHeight="475.0" prefWidth="877.0" rotate="0.0" />
+                                  </content>
+                                </ScrollPane>
+                                <Button font="$x1" layoutX="815.0" layoutY="549.0" mnemonicParsing="false" prefWidth="76.0" text="Send" />
+                                <ComboBox fx:id="fontTypeComboBox" layoutX="160.0" layoutY="510.0" prefHeight="22.0" prefWidth="151.0" promptText="Verdana">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                                <ToggleButton fx:id="boldButton" font="$x2" layoutX="15.0" layoutY="510.0" mnemonicParsing="false" prefHeight="25.0" text="B" />
+                                <ToggleButton fx:id="italicButton" layoutX="53.0" layoutY="510.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="I">
+                                  <font>
+                                    <Font name="Verdana Italic" size="12.0" fx:id="x3" />
+                                  </font>
+                                </ToggleButton>
+                                <ComboBox fx:id="fontSizeComboBox" layoutX="94.0" layoutY="510.0" minWidth="32.0" prefHeight="22.0" prefWidth="57.0" promptText="12">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                                <ComboBox fx:id="fontColorComboBox" layoutX="322.0" layoutY="510.0" prefHeight="21.0" prefWidth="182.0" promptText="" rotate="0.0">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
+                                <Separator layoutX="902.0" layoutY="13.0" orientation="VERTICAL" prefHeight="570.0" />
+                                <Separator layoutX="1160.0" layoutY="13.0" orientation="VERTICAL" prefHeight="571.0" />
+                                <ImageView fx:id="attachmentImageView" fitHeight="21.0" fitWidth="24.0" layoutX="522.0" layoutY="511.0" pickOnBounds="true" preserveRatio="false" rotate="0.0" />
+                                <CheckBox alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="587.0" layoutY="510.0" mnemonicParsing="false" prefHeight="21.0" text="Timestamp" textAlignment="LEFT" textOverrun="CENTER_ELLIPSIS" />
+                              </children>
+                            </AnchorPane>
+                          </items>
+                        </SplitPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <MenuBar blendMode="EXCLUSION" layoutX="0.0" layoutY="0.0" prefWidth="1198.0" useSystemMenuBar="true">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+  <stylesheets>
+    <URL value="@/styleSheets/MidnightStylesheet.css" />
+  </stylesheets>
+</AnchorPane>

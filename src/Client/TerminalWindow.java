@@ -17,7 +17,7 @@ public class TerminalWindow extends Application {
 
 
     private ClassLoader classLoader = this.getClass().getClassLoader();
-    FXMLLoader fxmlLoader = new FXMLLoader(classLoader.getResource("gui/terminal/TerminalFXML.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(classLoader.getResource("Client/TerminalFXML.fxml"));
 
 
     public TerminalWindow(){

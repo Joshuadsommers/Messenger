@@ -2,10 +2,12 @@ package objects;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
+
 /**
  * Created by Adam on 8/14/2016.
  */
-public class User {
+public class User implements Serializable{
 
     private User liason;
     private Image profilePicture;
