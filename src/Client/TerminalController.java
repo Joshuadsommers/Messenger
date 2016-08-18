@@ -214,7 +214,7 @@ public class TerminalController implements Initializable {
     }
 
     private void sendMessage(Message message){
-
+        appendMessage(message); // Appends to own client before sending to server, for faster chatting.
         connectionHandler.sendMessage(message);
 
     }
@@ -225,6 +225,9 @@ public class TerminalController implements Initializable {
         }
     }
 
+    // Appends the message to the area for chat in the client.
+    // Method is called from receive Input when a message is received from the server
+    // or when we append to the client before sending to the server
     public void appendMessage(Message message){
 
         thread = new Thread(() ->{
