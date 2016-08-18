@@ -18,7 +18,6 @@ public class ConnectionHandler implements Runnable {
 
     Socket socket;
     private User user;
-
     TerminalController terminal;
 
     ObjectInputStream input;
@@ -32,22 +31,32 @@ public class ConnectionHandler implements Runnable {
     }
 
     public void connect(){
-        try {
-            String IP = "127.0.0.1";
-            socket = new Socket(IP, 6969);
+        while(!isConnected){
+            try {
+                String IP = "52.43.163.58";
+                socket = new Socket(IP, 6969);
 
-            output = new ObjectOutputStream(socket.getOutputStream());
-            input = new ObjectInputStream(socket.getInputStream());
-            isConnected = true;
+                output = new ObjectOutputStream(socket.getOutputStream());
+                input = new ObjectInputStream(socket.getInputStream());
+                isConnected = true;
 
-            whileConnected();
+                whileConnected();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                connect();
+            }
         }
+
     }
 
     private void whileConnected(){
+        isConnected = true;
 
         sendMessage(user);
 

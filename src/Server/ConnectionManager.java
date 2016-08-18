@@ -85,6 +85,7 @@ public class ConnectionManager implements Runnable {
             try {
 
                 socket.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -73,10 +73,12 @@ public class TerminalController implements Initializable {
     private void connect(){
 
 
+
         Thread thread = new Thread(() ->{
             connectionHandler.connect();
         });
         thread.start();
+
     }
     private void loadColors(){
         Class clazz = null;
@@ -252,6 +254,7 @@ public class TerminalController implements Initializable {
         Stage stage = (Stage) mainPanel.getScene().getWindow();
         stage.close();
 
+
     }
 
     private void append(Message message){
@@ -277,6 +280,12 @@ public class TerminalController implements Initializable {
 
     @FXML
     private URL location;
+
+    @FXML
+    private TabPane chatTabPane;
+
+    @FXML
+    private AnchorPane centerPane;
 
     @FXML
     private ImageView attachmentImageView;

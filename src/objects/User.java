@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class User implements Serializable{
 
     private User liason;
-    private Image profilePicture;
+   // private Image profilePicture;
 
     private String firstName = "";
     private String middleName = "";
@@ -40,14 +40,6 @@ public class User implements Serializable{
 
     public void setLiason(User liason) {
         this.liason = liason;
-    }
-
-    public Image getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(Image profilePicture) {
-        this.profilePicture = profilePicture;
     }
 
     public String getFirstName() {

@@ -4,15 +4,18 @@
 <?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="EXCLUSION" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Client.TerminalController">
+<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="EXCLUSION" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1545.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Client.TerminalController">
   <children>
-    <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="1121.0">
+    <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="1466.0">
       <items>
         <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" smooth="true" />
         <Label text="Terminal [Syndicate]">
@@ -22,7 +25,7 @@
         </Label>
       </items>
     </ToolBar>
-    <ToolBar layoutX="1121.0" layoutY="0.0" prefWidth="78.0">
+    <ToolBar layoutX="1466.0" layoutY="0.0" prefWidth="78.0">
       <items>
         <Button fx:id="minimizeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="" />
         <Button fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="" />
@@ -32,15 +35,77 @@
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
           <children>
-            <TabPane layoutX="-2.0" layoutY="24.0" prefHeight="643.0" prefWidth="1200.0" tabClosingPolicy="ALL_TABS">
-              <tabs>
-                <Tab closable="false" text="Global Chat">
-                  <content>
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <MenuBar blendMode="EXCLUSION" layoutX="0.0" layoutY="0.0" prefWidth="1545.0" useSystemMenuBar="true">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <SplitPane dividerPositions="" focusTraversable="true" layoutX="-1.0" layoutY="24.0" orientation="VERTICAL" prefHeight="789.0" prefWidth="355.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="261.0" prefWidth="351.0">
+                  <children>
+                    <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="223.0" minWidth="351.0" prefHeight="223.0" prefWidth="351.0">
                       <children>
-                        <SplitPane dividerPositions="" focusTraversable="true" layoutX="13.0" layoutY="14.0" orientation="VERTICAL" prefHeight="584.0" prefWidth="1176.0">
+                        <ImageView blendMode="EXCLUSION" fitHeight="222.75" fitWidth="353.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+                          <image>
+                            <Image url="@../../../../../IdeaProjects/RunescapeToolkit/Images/blueblackbackground.jpg" />
+                          </image>
+                        </ImageView>
+                        <Circle blendMode="EXCLUSION" fill="DODGERBLUE" layoutX="64.0" layoutY="80.0" radius="49.5" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="15.0" layoutY="160.0" text="Syndicate">
+                          <font>
+                            <Font name="Georgia Bold" size="14.0" fx:id="x4" />
+                          </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="186.0" text="Syndicate@Establishment.net">
+                          <font>
+                            <Font name="Georgia" size="14.0" fx:id="x5" />
+                          </font>
+                        </Label>
+                        <Label blendMode="EXCLUSION" font="$x4" layoutX="125.0" layoutY="14.0" text="Administrator" textFill="#202020">
+                          <effect>
+                            <DropShadow color="#00ff29" height="26.81845238095238" radius="12.972470238095237" spread="0.47619047619047616" width="27.07142857142857" />
+                          </effect>
+                        </Label>
+                        <ImageView blendMode="DARKEN" fitHeight="20.0" fitWidth="20.0" layoutX="320.0" layoutY="7.0" pickOnBounds="true" preserveRatio="false">
+                          <image>
+                            <Image url="@../../../../../Pictures/ProgrammingPictures/settings_icon.png" />
+                          </image>
+                        </ImageView>
+                      </children>
+                    </AnchorPane>
+                    <Label font="$x5" layoutX="15.0" layoutY="273.0" prefWidth="337.0" text="Inbox:" />
+                    <Separator layoutX="14.0" layoutY="258.0" prefWidth="337.0" />
+                    <Label font="$x5" layoutX="13.0" layoutY="394.0" text="Email" />
+                    <Separator layoutX="14.0" layoutY="420.0" prefWidth="337.0" />
+                    <Label font="$x4" layoutX="14.0" layoutY="231.0" text="Email" />
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+            <TabPane fx:id="chatTabPane" disable="false" layoutX="351.0" layoutY="24.0" maxHeight="674.0" maxWidth="1223.0" mouseTransparent="false" pickOnBounds="false" prefHeight="674.0" prefWidth="1223.0" rotateGraphic="false" side="TOP" tabClosingPolicy="ALL_TABS" tabMinHeight="0.0" visible="true">
+              <tabs>
+                <Tab closable="false" disable="false" text="Global Chat">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1175.0">
+                      <children>
+                        <SplitPane dividerPositions="" focusTraversable="true" layoutX="13.0" layoutY="14.0" orientation="VERTICAL" prefHeight="584.0" prefWidth="1164.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="583.0" prefWidth="1174.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="1146.0">
                               <children>
                                 <ListView fx:id="onlineList" editable="false" focusTraversable="false" layoutX="914.0" layoutY="43.0" orientation="VERTICAL" prefHeight="452.0" prefWidth="237.0" />
                                 <Button fx:id="joinRoomButton" layoutX="912.0" layoutY="513.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="237.0" text="Join Room">
@@ -53,12 +118,15 @@
                                     <Font name="Verdana Bold" size="12.0" fx:id="x2" />
                                   </font>
                                 </Label>
-                                <Separator layoutX="903.0" layoutY="15.0" minHeight="1.0" prefHeight="1.0" prefWidth="259.0" />
                                 <Button fx:id="createRoomButton" font="$x1" layoutX="912.0" layoutY="548.0" mnemonicParsing="false" prefWidth="237.0" text="Create Room" />
                                 <TextField fx:id="chatLine" layoutX="13.0" layoutY="548.0" prefWidth="793.0" />
                                 <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" opacity="1.0" pannable="false" prefHeight="480.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="880.0" vbarPolicy="AS_NEEDED" visible="true">
                                   <content>
-                                    <VBox fx:id="chatWindow" prefHeight="475.0" prefWidth="877.0" rotate="0.0" />
+                                    <VBox fx:id="chatWindow" mouseTransparent="false" prefHeight="475.0" prefWidth="877.0" rotate="0.0" spacing="5.0">
+                                      <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                      </padding>
+                                    </VBox>
                                   </content>
                                 </ScrollPane>
                                 <Button font="$x1" layoutX="815.0" layoutY="549.0" mnemonicParsing="false" prefWidth="76.0" text="Send" />
@@ -95,8 +163,6 @@
                                     </FXCollections>
                                   </items>
                                 </ComboBox>
-                                <Separator layoutX="902.0" layoutY="13.0" orientation="VERTICAL" prefHeight="570.0" />
-                                <Separator layoutX="1160.0" layoutY="13.0" orientation="VERTICAL" prefHeight="571.0" />
                                 <ImageView fx:id="attachmentImageView" fitHeight="21.0" fitWidth="24.0" layoutX="522.0" layoutY="511.0" pickOnBounds="true" preserveRatio="false" rotate="0.0" />
                                 <CheckBox alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="587.0" layoutY="510.0" mnemonicParsing="false" prefHeight="21.0" text="Timestamp" textAlignment="LEFT" textOverrun="CENTER_ELLIPSIS" />
                               </children>
@@ -109,31 +175,12 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <MenuBar blendMode="EXCLUSION" layoutX="0.0" layoutY="0.0" prefWidth="1198.0" useSystemMenuBar="true">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
           </children>
         </AnchorPane>
       </items>
     </SplitPane>
   </children>
   <stylesheets>
-    <URL value="@/styleSheets/MidnightStylesheet.css" />
+    <URL value="@styleSheets/MidnightStylesheet.css" />
   </stylesheets>
 </AnchorPane>

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  *
  *
- * 
+ *
  *
  */
 public class ChatUser {
