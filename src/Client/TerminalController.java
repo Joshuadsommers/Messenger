@@ -156,7 +156,6 @@ public class TerminalController implements Initializable {
         fontTypeComboBox.getItems().addAll(javafx.scene.text.Font.getFamilies());
 
         connectionHandler = new ConnectionHandler(MasterClassUser.user, this);
-        expand();
 
     }
 
@@ -251,9 +250,9 @@ public class TerminalController implements Initializable {
 
     private synchronized void expand(){
 
-/*
-        menuButton.setDisable(true);
 
+        menuButton.setDisable(true);
+        centerPanel.toBack();
 
         centerPanel.setDisable(true);
         expanded = true;
@@ -261,30 +260,27 @@ public class TerminalController implements Initializable {
 
             while(menuPanel.getLayoutX() < 0){
                 try {
-
-
                     menuPanel.setLayoutX(menuPanel.getLayoutX() + 1);
-
-
-                    System.out.println("Expanding");
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             menuButton.setDisable(false);
+
         });
         translationThread.start();
-*/
+
+/*
         menuPanel.setVisible(true);
         centerPanel.setDisable(true);
         expanded = true;
-
+*/
     }
 
     private synchronized void collapse(){
 
-/*
+        menuPanel.toBack();
 
         expanded = false;
 
@@ -302,15 +298,17 @@ public class TerminalController implements Initializable {
             }
             menuButton.setDisable(false);
             centerPanel.setDisable(false);
+
         });
         translationThread.start();
+        centerPanel.toFront();
+/*
 
-*/
 
         menuPanel.setVisible(false);
         centerPanel.setDisable(false);
         expanded = false;
-
+*/
     }
 
 
