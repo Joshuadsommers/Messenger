@@ -18,7 +18,7 @@
     <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="1466.0">
       <items>
         <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" smooth="true" />
-        <Label text="Terminal [Syndicate]">
+        <Label text="Terminal">
           <font>
             <Font name="Georgia" size="12.0" />
           </font>
