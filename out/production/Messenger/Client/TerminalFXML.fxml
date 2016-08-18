@@ -181,6 +181,6 @@
     </SplitPane>
   </children>
   <stylesheets>
-    <URL value="@styleSheets/MidnightStylesheet.css" />
+    <URL value="@/styleSheets/MidnightStylesheet.css" />
   </stylesheets>
 </AnchorPane>

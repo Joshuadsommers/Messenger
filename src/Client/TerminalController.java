@@ -253,6 +253,7 @@ public class TerminalController implements Initializable {
 
         Stage stage = (Stage) mainPanel.getScene().getWindow();
         stage.close();
+        System.exit(0);
 
 
     }

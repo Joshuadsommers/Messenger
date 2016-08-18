@@ -35,7 +35,6 @@ public class TerminalWindow extends Application {
 
             Scene scene = new Scene(page);
             primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setAlwaysOnTop(true);
             primaryStage.setScene(scene);
             primaryStage.show();
 
