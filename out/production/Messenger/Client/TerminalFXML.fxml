@@ -33,7 +33,7 @@
     </ToolBar>
     <SplitPane dividerPositions="" focusTraversable="true" orientation="VERTICAL" prefHeight="669.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+        <AnchorPane depthTest="DISABLE" minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="1543.0">
           <children>
             <MenuBar blendMode="EXCLUSION" layoutX="1.0" layoutY="0.0" prefWidth="1545.0" useSystemMenuBar="true">
               <menus>
@@ -54,139 +54,174 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <SplitPane dividerPositions="" focusTraversable="true" layoutX="-1.0" layoutY="24.0" orientation="VERTICAL" prefHeight="789.0" prefWidth="355.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="261.0" prefWidth="351.0">
+            <StackPane id="StackPane" layoutX="1.0" layoutY="56.0" pickOnBounds="false" prefHeight="788.0" prefWidth="1231.0" rotate="0.0">
+              <children>
+                <AnchorPane id="AnchorPane" fx:id="centerPanel" depthTest="INHERIT" prefHeight="759.0" StackPane.alignment="TOP_RIGHT">
                   <children>
-                    <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="223.0" minWidth="351.0" prefHeight="223.0" prefWidth="351.0">
+                    <TabPane fx:id="chatTabPane" disable="false" layoutX="0.0" layoutY="0.0" maxHeight="789.0" maxWidth="1231.0" mouseTransparent="false" pickOnBounds="false" prefHeight="755.0" prefWidth="1231.0" rotateGraphic="false" side="TOP" tabClosingPolicy="ALL_TABS" tabMinHeight="0.0" visible="true">
+                      <tabs>
+                        <Tab closable="false" disable="false" text="Global Chat">
+                          <content>
+                            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1231.0">
+                              <children>
+                                <SplitPane dividerPositions="" focusTraversable="true" layoutX="13.0" layoutY="13.0" orientation="VERTICAL" prefHeight="705.0" prefWidth="1204.0">
+                                  <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="1146.0">
+                                      <children>
+                                        <TextField fx:id="chatLine" layoutX="15.0" layoutY="670.0" prefWidth="1087.0" />
+                                        <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="15.0" opacity="1.0" pannable="false" prefHeight="599.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="1169.0" vbarPolicy="AS_NEEDED" visible="true">
+                                          <content>
+                                            <VBox fx:id="chatWindow" mouseTransparent="false" prefHeight="594.0" prefWidth="1165.0" rotate="0.0" spacing="5.0">
+                                              <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                              </padding>
+                                            </VBox>
+                                          </content>
+                                        </ScrollPane>
+                                        <Button layoutX="1112.0" layoutY="671.0" mnemonicParsing="false" prefWidth="76.0" text="Send">
+                                          <font>
+                                            <Font name="Verdana" size="12.0" fx:id="x1" />
+                                          </font>
+                                        </Button>
+                                        <ComboBox fx:id="fontTypeComboBox" layoutX="160.0" layoutY="632.0" prefHeight="22.0" prefWidth="151.0" promptText="Verdana">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                        <ToggleButton fx:id="boldButton" layoutX="15.0" layoutY="632.0" mnemonicParsing="false" prefHeight="25.0" text="B">
+                                          <font>
+                                            <Font name="Verdana Bold" size="12.0" fx:id="x2" />
+                                          </font>
+                                        </ToggleButton>
+                                        <ToggleButton fx:id="italicButton" layoutX="53.0" layoutY="632.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="I">
+                                          <font>
+                                            <Font name="Verdana Italic" size="12.0" fx:id="x3" />
+                                          </font>
+                                        </ToggleButton>
+                                        <ComboBox fx:id="fontSizeComboBox" layoutX="94.0" layoutY="632.0" minWidth="32.0" prefHeight="22.0" prefWidth="57.0" promptText="14">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                        <ComboBox fx:id="fontColorComboBox" layoutX="322.0" layoutY="632.0" prefHeight="21.0" prefWidth="182.0" promptText="" rotate="0.0">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                        <ImageView fx:id="attachmentImageView" fitHeight="21.0" fitWidth="24.0" layoutX="522.0" layoutY="632.0" pickOnBounds="true" preserveRatio="false" rotate="0.0" />
+                                        <CheckBox alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="601.0" layoutY="632.0" mnemonicParsing="false" prefHeight="21.0" text="Timestamp" textAlignment="LEFT" textOverrun="CENTER_ELLIPSIS" />
+                                      </children>
+                                    </AnchorPane>
+                                  </items>
+                                </SplitPane>
+                              </children>
+                            </AnchorPane>
+                          </content>
+                        </Tab>
+                      </tabs>
+                    </TabPane>
+                  </children>
+                </AnchorPane>
+                <SplitPane id="helpPanel" fx:id="menuPanel" depthTest="INHERIT" disable="false" dividerPositions="" focusTraversable="false" maxHeight="789.0" maxWidth="415.0" minHeight="0.0" minWidth="0.0" opacity="1.0" orientation="VERTICAL" pickOnBounds="false" prefHeight="789.0" prefWidth="415.0" translateX="0.0" translateZ="0.0" visible="true" StackPane.alignment="TOP_LEFT">
+                  <items>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="154.0">
                       <children>
-                        <ImageView blendMode="EXCLUSION" fitHeight="222.75" fitWidth="353.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
-                          <image>
-                            <Image url="@../../../../../IdeaProjects/RunescapeToolkit/Images/blueblackbackground.jpg" />
-                          </image>
-                        </ImageView>
-                        <Circle blendMode="EXCLUSION" fill="DODGERBLUE" layoutX="64.0" layoutY="80.0" radius="49.5" stroke="BLACK" strokeType="INSIDE" />
-                        <Label layoutX="15.0" layoutY="164.0" text="Syndicate">
-                          <font>
-                            <Font name="Georgia Bold" size="14.0" fx:id="x4" />
-                          </font>
-                        </Label>
-                        <Label layoutX="15.0" layoutY="190.0" text="Syndicate@Establishment.net">
-                          <font>
-                            <Font name="Georgia" size="14.0" fx:id="x5" />
-                          </font>
-                        </Label>
-                        <Label blendMode="EXCLUSION" font="$x4" layoutX="125.0" layoutY="14.0" text="Administrator" textFill="#202020">
-                          <effect>
-                            <DropShadow color="#00ff29" height="26.81845238095238" radius="12.972470238095237" spread="0.47619047619047616" width="27.07142857142857" />
-                          </effect>
-                        </Label>
-                        <ImageView blendMode="DARKEN" fitHeight="20.0" fitWidth="20.0" layoutX="320.0" layoutY="7.0" pickOnBounds="true" preserveRatio="false">
-                          <image>
-                            <Image url="@../../../../../Pictures/ProgrammingPictures/settings_icon.png" />
-                          </image>
-                        </ImageView>
+                        <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="223.0" minWidth="351.0" prefHeight="223.0" prefWidth="413.0">
+                          <children>
+                            <ImageView blendMode="EXCLUSION" fitHeight="223.00009155273438" fitWidth="413.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+                              <image>
+                                <Image url="@../../../../../IdeaProjects/RunescapeToolkit/Images/blueblackbackground.jpg" />
+                              </image>
+                            </ImageView>
+                            <Circle fx:id="pictureCircle" blendMode="EXCLUSION" fill="DODGERBLUE" layoutX="64.0" layoutY="80.0" radius="49.5" stroke="BLACK" strokeType="INSIDE" />
+                            <Label fx:id="userAliasContactLabel" layoutX="15.0" layoutY="164.0" text="Syndicate">
+                              <font>
+                                <Font name="Georgia Bold" size="14.0" fx:id="x4" />
+                              </font>
+                            </Label>
+                            <Label fx:id="userEmailLabel" layoutX="15.0" layoutY="190.0" text="Syndicate@Establishment.net">
+                              <font>
+                                <Font name="Georgia" size="14.0" fx:id="x5" />
+                              </font>
+                            </Label>
+                            <Label fx:id="userPermissionsLabel" blendMode="EXCLUSION" font="$x4" layoutX="156.0" layoutY="11.0" text="Administrator" textFill="#202020">
+                              <effect>
+                                <DropShadow color="#00ff29" height="27.06747581845238" radius="13.034726097470237" spread="0.47619047619047616" width="27.07142857142857" />
+                              </effect>
+                            </Label>
+                            <ImageView fx:id="settingsLabel" blendMode="DARKEN" fitHeight="20.0" fitWidth="20.0" layoutX="379.0" layoutY="7.0" pickOnBounds="true" preserveRatio="false">
+                              <image>
+                                <Image url="@../../../../../Pictures/ProgrammingPictures/settings_icon.png" />
+                              </image>
+                            </ImageView>
+                          </children>
+                        </AnchorPane>
+                        <Label fx:id="inboxLabel" font="$x5" layoutX="15.0" layoutY="282.0" prefWidth="337.0" text="Inbox:" />
+                        <Separator layoutX="13.0" layoutY="267.0" prefWidth="386.0" />
+                        <Separator layoutX="14.0" layoutY="427.0" prefWidth="386.0" />
+                        <Label font="$x4" layoutX="14.0" layoutY="240.0" text="Email" />
+                        <Label fx:id="outboxLabel" font="$x5" layoutX="14.0" layoutY="305.0" prefWidth="337.0" text="Outbox:" />
+                        <Label fx:id="tasksLabel" font="$x5" layoutX="14.0" layoutY="463.0" prefWidth="337.0" text="Tasks:" />
+                        <Label font="$x4" layoutX="14.0" layoutY="399.0" text="Establishment" />
+                        <Label fx:id="rosterLabel" font="$x5" layoutX="14.0" layoutY="440.0" prefWidth="337.0" text="Roster:" />
+                        <Label fx:id="composeLabel" font="$x5" layoutX="14.0" layoutY="328.0" prefWidth="337.0" text="Compose:" />
+                        <Label fx:id="archiveLabel" font="$x5" layoutX="15.0" layoutY="352.0" prefWidth="337.0" text="Archive:" />
+                        <Separator layoutX="14.0" layoutY="544.0" prefWidth="386.0" />
+                        <Label fx:id="gravemindLabel" font="$x5" layoutX="14.0" layoutY="580.0" prefWidth="337.0" text="Gravemind" />
+                        <Label font="$x4" layoutX="14.0" layoutY="516.0" text="Access" />
+                        <Label fx:id="databaseTable" font="$x5" layoutX="14.0" layoutY="557.0" prefWidth="337.0" text="Database" />
+                        <Label fx:id="gatewayLabel" font="$x5" layoutX="14.0" layoutY="603.0" prefWidth="337.0" text="Gateway" />
+                        <Label fx:id="notesLabel" font="$x5" layoutX="15.0" layoutY="625.0" prefWidth="337.0" text="Notes" />
                       </children>
                     </AnchorPane>
-                    <Label font="$x5" layoutX="15.0" layoutY="282.0" prefWidth="337.0" text="Inbox:" />
-                    <Separator layoutX="14.0" layoutY="267.0" prefWidth="337.0" />
-                    <Separator layoutX="14.0" layoutY="427.0" prefWidth="337.0" />
-                    <Label font="$x4" layoutX="14.0" layoutY="240.0" text="Email" />
-                    <Label font="$x5" layoutX="14.0" layoutY="305.0" prefWidth="337.0" text="Outbox:" />
-                    <Label font="$x5" layoutX="14.0" layoutY="463.0" prefWidth="337.0" text="Tasks:" />
-                    <Label font="$x4" layoutX="14.0" layoutY="399.0" text="Establishment" />
-                    <Label font="$x5" layoutX="14.0" layoutY="440.0" prefWidth="337.0" text="Roster:" />
-                    <Label font="$x5" layoutX="14.0" layoutY="328.0" prefWidth="337.0" text="Compose:" />
-                    <Label font="$x5" layoutX="15.0" layoutY="352.0" prefWidth="337.0" text="Archive:" />
-                    <Separator layoutX="14.0" layoutY="544.0" prefWidth="337.0" />
-                    <Label font="$x5" layoutX="14.0" layoutY="580.0" prefWidth="337.0" text="Gravemind" />
-                    <Label font="$x4" layoutX="14.0" layoutY="516.0" text="Access" />
-                    <Label font="$x5" layoutX="14.0" layoutY="557.0" prefWidth="337.0" text="Database" />
-                    <Label font="$x5" layoutX="14.0" layoutY="603.0" prefWidth="337.0" text="Gateway" />
-                    <Label font="$x5" layoutX="15.0" layoutY="625.0" prefWidth="337.0" text="Notes" />
+                  </items>
+                </SplitPane>
+              </children>
+            </StackPane>
+            <SplitPane dividerPositions="" focusTraversable="true" layoutX="1232.0" layoutY="56.0" orientation="VERTICAL" prefHeight="757.0" prefWidth="311.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <Label font="$x2" layoutX="85.0" layoutY="15.0" text="Members Present: [0]" />
+                    <ScrollPane id="ScrollPane" layoutX="14.0" layoutY="44.0" prefHeight="603.0" prefViewportHeight="511.0" prefViewportWidth="283.0">
+                      <content>
+                        <VBox prefHeight="588.0" prefWidth="283.0" />
+                      </content>
+                    </ScrollPane>
+                    <Button fx:id="joinRoomButton" font="$x1" layoutX="36.0" layoutY="665.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="237.0" text="Join Room" />
+                    <Button fx:id="createRoomButton" font="$x1" layoutX="36.0" layoutY="707.0" mnemonicParsing="false" prefWidth="237.0" text="Create Room" />
                   </children>
                 </AnchorPane>
               </items>
             </SplitPane>
-            <TabPane fx:id="chatTabPane" disable="false" layoutX="351.0" layoutY="24.0" maxHeight="674.0" maxWidth="1223.0" mouseTransparent="false" pickOnBounds="false" prefHeight="0.0" prefWidth="0.0" rotateGraphic="false" side="TOP" tabClosingPolicy="ALL_TABS" tabMinHeight="0.0" visible="true">
-              <tabs>
-                <Tab closable="false" disable="false" text="Global Chat">
-                  <content>
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1175.0">
-                      <children>
-                        <SplitPane dividerPositions="" focusTraversable="true" layoutX="13.0" layoutY="14.0" orientation="VERTICAL" prefHeight="584.0" prefWidth="1164.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="1146.0">
-                              <children>
-                                <ListView fx:id="onlineList" editable="false" focusTraversable="false" layoutX="914.0" layoutY="43.0" orientation="VERTICAL" prefHeight="452.0" prefWidth="237.0" />
-                                <Button fx:id="joinRoomButton" layoutX="912.0" layoutY="513.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="237.0" text="Join Room">
-                                  <font>
-                                    <Font name="Verdana" size="12.0" fx:id="x1" />
-                                  </font>
-                                </Button>
-                                <Label layoutX="965.0" layoutY="22.0" text="Members Present [0]">
-                                  <font>
-                                    <Font name="Verdana Bold" size="12.0" fx:id="x2" />
-                                  </font>
-                                </Label>
-                                <Button fx:id="createRoomButton" font="$x1" layoutX="912.0" layoutY="548.0" mnemonicParsing="false" prefWidth="237.0" text="Create Room" />
-                                <TextField fx:id="chatLine" layoutX="13.0" layoutY="548.0" prefWidth="793.0" />
-                                <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" opacity="1.0" pannable="false" prefHeight="480.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="880.0" vbarPolicy="AS_NEEDED" visible="true">
-                                  <content>
-                                    <VBox fx:id="chatWindow" mouseTransparent="false" prefHeight="475.0" prefWidth="877.0" rotate="0.0" spacing="5.0">
-                                      <padding>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                      </padding>
-                                    </VBox>
-                                  </content>
-                                </ScrollPane>
-                                <Button font="$x1" layoutX="815.0" layoutY="549.0" mnemonicParsing="false" prefWidth="76.0" text="Send" />
-                                <ComboBox fx:id="fontTypeComboBox" layoutX="160.0" layoutY="510.0" prefHeight="22.0" prefWidth="151.0" promptText="Verdana">
-                                  <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                      <String fx:value="Item 1" />
-                                      <String fx:value="Item 2" />
-                                      <String fx:value="Item 3" />
-                                    </FXCollections>
-                                  </items>
-                                </ComboBox>
-                                <ToggleButton fx:id="boldButton" font="$x2" layoutX="15.0" layoutY="510.0" mnemonicParsing="false" prefHeight="25.0" text="B" />
-                                <ToggleButton fx:id="italicButton" layoutX="53.0" layoutY="510.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="I">
-                                  <font>
-                                    <Font name="Verdana Italic" size="12.0" fx:id="x3" />
-                                  </font>
-                                </ToggleButton>
-                                <ComboBox fx:id="fontSizeComboBox" layoutX="94.0" layoutY="510.0" minWidth="32.0" prefHeight="22.0" prefWidth="57.0" promptText="14">
-                                  <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                      <String fx:value="Item 1" />
-                                      <String fx:value="Item 2" />
-                                      <String fx:value="Item 3" />
-                                    </FXCollections>
-                                  </items>
-                                </ComboBox>
-                                <ComboBox fx:id="fontColorComboBox" layoutX="322.0" layoutY="510.0" prefHeight="21.0" prefWidth="182.0" promptText="" rotate="0.0">
-                                  <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                      <String fx:value="Item 1" />
-                                      <String fx:value="Item 2" />
-                                      <String fx:value="Item 3" />
-                                    </FXCollections>
-                                  </items>
-                                </ComboBox>
-                                <ImageView fx:id="attachmentImageView" fitHeight="21.0" fitWidth="24.0" layoutX="522.0" layoutY="511.0" pickOnBounds="true" preserveRatio="false" rotate="0.0" />
-                                <CheckBox alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="587.0" layoutY="510.0" mnemonicParsing="false" prefHeight="21.0" text="Timestamp" textAlignment="LEFT" textOverrun="CENTER_ELLIPSIS" />
-                              </children>
-                            </AnchorPane>
-                          </items>
-                        </SplitPane>
-                      </children>
-                    </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-            <AnchorPane fx:id="emailPanel" layoutX="354.0" layoutY="24.0" prefHeight="787.0" prefWidth="1189.0" />
+            <ToolBar layoutX="-1.0" layoutY="26.0" prefWidth="1542.9998779296875">
+              <items>
+                <Button fx:id="menuButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" opacity="0.77" prefWidth="33.0" text="Button" />
+                <Separator prefHeight="21.0" prefWidth="586.0" />
+                <Label fx:id="userTitleLabel" alignment="CENTER" blendMode="EXCLUSION" font="$x4" prefHeight="21.000099999997474" prefWidth="290.0" text="Syndicate" textFill="BLACK">
+                  <effect>
+                    <Reflection fraction="1.0" topOffset="-25.0" topOpacity="0.4444444444444444">
+                      <input>
+                        <DropShadow blurType="GAUSSIAN" color="#00a3ff" height="31.07936507936508" radius="15.03968253968254" spread="0.746031746031746" width="31.07936507936508" />
+                      </input>
+                    </Reflection>
+                  </effect>
+                </Label>
+                <Separator prefHeight="21.0" prefWidth="600.0" />
+              </items>
+            </ToolBar>
           </children>
         </AnchorPane>
       </items>

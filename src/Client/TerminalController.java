@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import objects.MasterClassUser;
 import objects.Message;
@@ -38,6 +39,9 @@ public class TerminalController implements Initializable {
     private ClassLoader classLoader = this.getClass().getClassLoader();
     private ConnectionHandler connectionHandler;
 
+    private boolean expanded = false;
+    private Thread translationThread;
+
     public ArrayList<Room> activeRooms = new ArrayList<>();
 
     private Thread thread;
@@ -60,7 +64,6 @@ public class TerminalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         loadColors();
         setGraphics();
         setPreferences();
@@ -107,6 +110,19 @@ public class TerminalController implements Initializable {
 
     private void setGraphics(){
 
+        ImageView chatIcon = new ImageView();
+        chatIcon.setImage(new Image(classLoader.getResourceAsStream("Images/chat_icon.png")));
+        chatIcon.setFitWidth(15);
+        chatIcon.setFitHeight(15);
+        chatIcon.setBlendMode(BlendMode.EXCLUSION);
+        joinRoomButton.setGraphic(chatIcon);
+
+        ImageView menuIcon = new ImageView();
+        menuIcon.setImage(new Image(classLoader.getResourceAsStream("Images/menu_icon.png")));
+        menuIcon.setFitWidth(15);
+        menuIcon.setFitHeight(15);
+        menuButton.setGraphic(menuIcon);
+
         ImageView closeIcon = new ImageView();
         closeIcon.setImage(new Image(classLoader.getResourceAsStream("Images/closeIcon.png")));
         closeIcon.setFitWidth(15);
@@ -140,17 +156,17 @@ public class TerminalController implements Initializable {
         fontTypeComboBox.getItems().addAll(javafx.scene.text.Font.getFamilies());
 
         connectionHandler = new ConnectionHandler(MasterClassUser.user, this);
+        expand();
 
     }
 
     private void createListeners(){
 
-        minimizeButton.setOnAction(Event ->{
-
-            chatTabPane.setPrefSize(chatTabPane.getMaxWidth(), chatTabPane.getMaxHeight());
-            emailPanel.getChildren().add(chatTabPane);
-            chatTabPane.setLayoutX(0);
-            chatTabPane.setLayoutY(0);
+        menuButton.setOnAction(Event ->{
+            if(expanded){
+                collapse();
+            }
+            else expand();
         });
 
         titleBar.setOnMousePressed(Event -> {
@@ -233,6 +249,71 @@ public class TerminalController implements Initializable {
         }
     }
 
+    private synchronized void expand(){
+
+/*
+        menuButton.setDisable(true);
+
+
+        centerPanel.setDisable(true);
+        expanded = true;
+        translationThread = new Thread(() ->{
+
+            while(menuPanel.getLayoutX() < 0){
+                try {
+
+
+                    menuPanel.setLayoutX(menuPanel.getLayoutX() + 1);
+
+
+                    System.out.println("Expanding");
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            menuButton.setDisable(false);
+        });
+        translationThread.start();
+*/
+        menuPanel.setVisible(true);
+        centerPanel.setDisable(true);
+        expanded = true;
+
+    }
+
+    private synchronized void collapse(){
+
+/*
+
+        expanded = false;
+
+        menuButton.setDisable(true);
+
+        translationThread = new Thread(() ->{
+            while(menuPanel.getLayoutX() > -(menuPanel.getWidth())){
+
+                try {
+                    menuPanel.setLayoutX(menuPanel.getLayoutX() - 1);
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            menuButton.setDisable(false);
+            centerPanel.setDisable(false);
+        });
+        translationThread.start();
+
+*/
+
+        menuPanel.setVisible(false);
+        centerPanel.setDisable(false);
+        expanded = false;
+
+    }
+
+
     // Appends the message to the area for chat in the client.
     // Method is called from receive Input when a message is received from the server
     // or when we append to the client before sending to the server
@@ -243,10 +324,11 @@ public class TerminalController implements Initializable {
 
             messageLabel.setBlendMode(BlendMode.EXCLUSION);
             messageLabel.setFont(new javafx.scene.text.Font(fontType, fontSize));
-
             messageLabel.setTextFill(fontColor);
             messageLabel.setMaxSize(chatWindow.getWidth() - 25, chatWindow.getHeight());
+            //messageLabel.setStyle("-fx-font-weight: bold;"); // MAKES FONT BOLD
             messageLabel.setWrapText(true);
+
 
             chatWindow.getChildren().add(messageLabel);
         });
@@ -256,8 +338,6 @@ public class TerminalController implements Initializable {
 
 
     }
-
-
 
 
     private void closeWindow(){
@@ -289,19 +369,22 @@ public class TerminalController implements Initializable {
     //--------------------------------------------------JAVAFX INITIALIZATION-------------------------------------------
 
     @FXML
-    private AnchorPane emailPanel;
+    private ResourceBundle resources;
 
     @FXML
-    private ResourceBundle resources;
+    private Button joinRoomToolbarButton;
 
     @FXML
     private URL location;
 
     @FXML
-    private TabPane chatTabPane;
+    private AnchorPane centerPanel;
 
     @FXML
-    private AnchorPane centerPane;
+    private SplitPane menuPanel;
+
+    @FXML
+    private Label archiveLabel;
 
     @FXML
     private ImageView attachmentImageView;
@@ -313,6 +396,9 @@ public class TerminalController implements Initializable {
     private TextField chatLine;
 
     @FXML
+    private TabPane chatTabPane;
+
+    @FXML
     private VBox chatWindow;
 
     @FXML
@@ -322,7 +408,13 @@ public class TerminalController implements Initializable {
     private Button closeButton;
 
     @FXML
+    private Label composeLabel;
+
+    @FXML
     private Button createRoomButton;
+
+    @FXML
+    private Label databaseTable;
 
     @FXML
     private ComboBox<String> fontColorComboBox;
@@ -334,6 +426,15 @@ public class TerminalController implements Initializable {
     private ComboBox<String> fontTypeComboBox;
 
     @FXML
+    private Label gatewayLabel;
+
+    @FXML
+    private Label gravemindLabel;
+
+    @FXML
+    private Label inboxLabel;
+
+    @FXML
     private ToggleButton italicButton;
 
     @FXML
@@ -343,10 +444,31 @@ public class TerminalController implements Initializable {
     private AnchorPane mainPanel;
 
     @FXML
+    private Button menuButton;
+
+    @FXML
     private Button minimizeButton;
 
     @FXML
+    private Label notesLabel;
+
+    @FXML
     private ListView<?> onlineList;
+
+    @FXML
+    private Label outboxLabel;
+
+    @FXML
+    private Circle pictureCircle;
+
+    @FXML
+    private Label rosterLabel;
+
+    @FXML
+    private ImageView settingsLabel;
+
+    @FXML
+    private Label tasksLabel;
 
     @FXML
     private ToolBar titleBar;
@@ -354,27 +476,58 @@ public class TerminalController implements Initializable {
     @FXML
     private ImageView titleImageView;
 
+    @FXML
+    private Label userAliasContactLabel;
+
+    @FXML
+    private Label userEmailLabel;
+
+    @FXML
+    private Label userPermissionsLabel;
+
+    @FXML
+    private Label userTitleLabel;
+
 
     @FXML
     void initialize() {
+        assert archiveLabel != null : "fx:id=\"archiveLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert attachmentImageView != null : "fx:id=\"attachmentImageView\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert boldButton != null : "fx:id=\"boldButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert chatLine != null : "fx:id=\"chatLine\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert chatTabPane != null : "fx:id=\"chatTabPane\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert chatWindow != null : "fx:id=\"chatWindow\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert chatWindowScrollPane != null : "fx:id=\"chatWindowScrollPane\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert closeButton != null : "fx:id=\"closeButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert composeLabel != null : "fx:id=\"composeLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert createRoomButton != null : "fx:id=\"createRoomButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert databaseTable != null : "fx:id=\"databaseTable\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert fontColorComboBox != null : "fx:id=\"fontColorComboBox\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert fontSizeComboBox != null : "fx:id=\"fontSizeComboBox\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert fontTypeComboBox != null : "fx:id=\"fontTypeComboBox\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert gatewayLabel != null : "fx:id=\"gatewayLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert gravemindLabel != null : "fx:id=\"gravemindLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert inboxLabel != null : "fx:id=\"inboxLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert italicButton != null : "fx:id=\"italicButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert joinRoomButton != null : "fx:id=\"joinRoomButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert mainPanel != null : "fx:id=\"mainPanel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert menuButton != null : "fx:id=\"menuButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert minimizeButton != null : "fx:id=\"minimizeButton\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert notesLabel != null : "fx:id=\"notesLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert onlineList != null : "fx:id=\"onlineList\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert outboxLabel != null : "fx:id=\"outboxLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert pictureCircle != null : "fx:id=\"pictureCircle\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert rosterLabel != null : "fx:id=\"rosterLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert settingsLabel != null : "fx:id=\"settingsLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert tasksLabel != null : "fx:id=\"tasksLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert titleBar != null : "fx:id=\"titleBar\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
         assert titleImageView != null : "fx:id=\"titleImageView\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert userAliasContactLabel != null : "fx:id=\"userAliasContactLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert userEmailLabel != null : "fx:id=\"userEmailLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert userPermissionsLabel != null : "fx:id=\"userPermissionsLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
+        assert userTitleLabel != null : "fx:id=\"userTitleLabel\" was not injected: check your FXML file 'TerminalFXML.fxml'.";
 
 
     }
+
 }
