@@ -18,7 +18,7 @@
     <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="1466.0">
       <items>
         <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" smooth="true" />
-        <Label text="Terminal [Syndicate]">
+        <Label text="Terminal">
           <font>
             <Font name="Georgia" size="12.0" />
           </font>
@@ -142,7 +142,7 @@
                           <children>
                             <AnchorPane fx:id="bannerPane" layoutX="0.0" layoutY="0.0" minHeight="223.0" minWidth="351.0" prefHeight="223.0" prefWidth="413.0">
                               <children>
-                                <ImageView blendMode="EXCLUSION" fitHeight="223.00009155273438" fitWidth="413.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+                                <ImageView fx:id="bannerImageView" blendMode="EXCLUSION" fitHeight="223.00009155273438" fitWidth="413.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
                                   <image>
                                     <Image url="@../../../../../IdeaProjects/RunescapeToolkit/Images/blueblackbackground.jpg" />
                                   </image>
@@ -160,7 +160,7 @@
                                 </Label>
                                 <Label fx:id="userPermissionsLabel" blendMode="EXCLUSION" font="$x4" layoutX="156.0" layoutY="11.0" text="Administrator" textFill="#202020">
                                   <effect>
-                                    <DropShadow color="#00ff29" height="27.069452194940474" radius="13.035220191592261" spread="0.47619047619047616" width="27.07142857142857" />
+                                    <DropShadow color="#00ff29" height="27.070440383184522" radius="13.035467238653272" spread="0.47619047619047616" width="27.07142857142857" />
                                   </effect>
                                 </Label>
                                 <ImageView fx:id="settingsLabel" blendMode="DARKEN" fitHeight="20.0" fitWidth="20.0" layoutX="379.0" layoutY="7.0" pickOnBounds="true" preserveRatio="false">

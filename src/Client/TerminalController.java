@@ -14,8 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import objects.ChatPreferences;
 import objects.MasterClassUser;
 import objects.Message;
 import objects.MessageLabel;
@@ -138,12 +140,10 @@ public class TerminalController implements Initializable {
 
         attachmentImageView.setImage(new Image(classLoader.getResourceAsStream("Images/attachmentIcon.png")));
 
-        /*
-        BackgroundImage myBI= new BackgroundImage(new Image("my url",32,32,false,true),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-                */
-
+        bannerImageView.setImage(new Image("Images/hackbackground.png"));
+        settingsLabel.setImage(new Image("Images/settings_icon.png"));
+        ImagePattern imagePattern = new ImagePattern(new Image("Images/anonymous_login_icon.png"));
+        pictureCircle.setFill(imagePattern);
     }
 
     private void setPreferences(){
@@ -156,6 +156,7 @@ public class TerminalController implements Initializable {
 
         fontColorComboBox.getItems().clear();
         fontColorComboBox.getItems().addAll(colorMap.keySet());
+        fontColorComboBox.getSelectionModel().select(0);
 
         fontTypeComboBox.getItems().clear();
         fontTypeComboBox.getItems().addAll(javafx.scene.text.Font.getFamilies());
@@ -190,7 +191,7 @@ public class TerminalController implements Initializable {
             String text = chatLine.getText();
 
             if(text.length() > 0){
-                Message message = new Message(0, MasterClassUser.user, text, false);
+                Message message = new Message(0, MasterClassUser.user, text, ChatPreferences.internalFont, ChatPreferences.internalFontColor, false);
                 sendMessage(message);
 
                 chatLine.setText("");
@@ -214,11 +215,11 @@ public class TerminalController implements Initializable {
         });
 
         fontColorComboBox.setOnAction(Event ->{
-            fontColor = colorMap.get(fontColorComboBox.getSelectionModel().getSelectedItem());
+            ChatPreferences.internalFontColor = colorMap.get(fontColorComboBox.getSelectionModel().getSelectedItem());
         });
 
         fontTypeComboBox.setOnAction(Event ->{
-            fontType = fontTypeComboBox.getSelectionModel().getSelectedItem();
+            ChatPreferences.internalFont = new javafx.scene.text.Font(fontTypeComboBox.getSelectionModel().getSelectedItem(), fontSize);
         });
 
         boldButton.setOnAction(Event ->{
@@ -242,7 +243,8 @@ public class TerminalController implements Initializable {
     }
 
     private void sendMessage(Message message){
-        appendMessage(message); // Appends to own client before sending to server, for faster chatting.
+        //appendMessage(message); // Appends to own client before sending to server, for faster chatting.
+        addClientMessage(message);
         connectionHandler.sendMessage(message);
 
     }
@@ -316,6 +318,33 @@ public class TerminalController implements Initializable {
 */
     }
 
+    public void addClientMessage(Message message){
+
+        thread = new Thread(() ->{
+            MessageLabel messageLabel = new MessageLabel(message);
+
+            messageLabel.setBlendMode(BlendMode.EXCLUSION);
+           // messageLabel.setFont(new javafx.scene.text.Font(fontType, fontSize));
+            if(ChatPreferences.overrideExternalFonts) {
+                messageLabel.setFont(ChatPreferences.externalFont);
+                messageLabel.setTextFill(ChatPreferences.externalFontColor);
+            }
+            else{
+                messageLabel.setFont(message.getFont());
+                messageLabel.setTextFill(message.getFontColor());
+            }
+            //messageLabel.setTextFill(fontColor);
+            messageLabel.setMaxSize(chatWindow.getWidth() - 25, chatWindow.getHeight());
+            //messageLabel.setStyle("-fx-font-weight: bold;"); // MAKES FONT BOLD
+            messageLabel.setWrapText(true);
+
+
+            chatWindow.getChildren().add(messageLabel);
+        });
+
+        Platform.runLater(thread);
+
+    }
 
     // Appends the message to the area for chat in the client.
     // Method is called from receive Input when a message is received from the server
@@ -383,6 +412,8 @@ public class TerminalController implements Initializable {
     @FXML
     private AnchorPane bannerPane;
 
+    @FXML
+    private ImageView bannerImageView;
     @FXML
     private AnchorPane menuBodyPane;
 

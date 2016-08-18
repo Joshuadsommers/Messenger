@@ -1,5 +1,8 @@
 package objects;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,17 +25,20 @@ public class Message implements Serializable {
     private User user;
 
     private int key;
-
+    private Font font;
+    private Color fontColor;
     private boolean timestamp;
 
     private String rawText;
     private String timeStamp;
     private String message;
 
-    public Message(int key, User user, String rawText, boolean timestamp){
+    public Message(int key, User user, String rawText, Font font, Color fontColor, boolean timestamp){
         this.key = key;
         this.user = user;
         this.rawText = rawText;
+        this.font = font;
+        this.fontColor = fontColor;
         this.timestamp = timestamp;
 
         this.timeStamp = timeStamp();
@@ -71,5 +77,21 @@ public class Message implements Serializable {
 
     public String toString(){
         return "<" + key + ">" + getMessage();
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    public Color getFontColor() {
+        return fontColor;
+    }
+
+    public void setFontColor(Color fontColor) {
+        this.fontColor = fontColor;
     }
 }
