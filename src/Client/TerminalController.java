@@ -145,6 +145,14 @@ public class TerminalController implements Initializable {
 
     private void createListeners(){
 
+        minimizeButton.setOnAction(Event ->{
+
+            emailPanel.getChildren().add(chatTabPane);
+            chatTabPane.setPrefSize(chatTabPane.getMaxWidth(), chatTabPane.getMaxHeight());
+            chatTabPane.setLayoutX(0);
+            chatTabPane.setLayoutY(0);
+        });
+
         titleBar.setOnMousePressed(Event -> {
             xOffset = titleBar.getScene().getWindow().getX() - MouseInfo.getPointerInfo().getLocation().getX();
             yOffset = titleBar.getScene().getWindow().getY() - MouseInfo.getPointerInfo().getLocation().getY();
@@ -276,6 +284,10 @@ public class TerminalController implements Initializable {
 
 
     //--------------------------------------------------JAVAFX INITIALIZATION-------------------------------------------
+
+    @FXML
+    private AnchorPane emailPanel;
+
     @FXML
     private ResourceBundle resources;
 
