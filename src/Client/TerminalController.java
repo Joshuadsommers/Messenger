@@ -147,8 +147,8 @@ public class TerminalController implements Initializable {
 
         minimizeButton.setOnAction(Event ->{
 
-            emailPanel.getChildren().add(chatTabPane);
             chatTabPane.setPrefSize(chatTabPane.getMaxWidth(), chatTabPane.getMaxHeight());
+            emailPanel.getChildren().add(chatTabPane);
             chatTabPane.setLayoutX(0);
             chatTabPane.setLayoutY(0);
         });

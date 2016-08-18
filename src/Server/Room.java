@@ -86,6 +86,8 @@ public class Room  {
 
         activeUsers.forEach(i -> { // For each user in this room
             if(!(message.getUser().equals(i.getUser()))) { // if user is not the one who sent message
+                System.out.println(message.getUser());
+                System.out.println(i.getUser());
                 try {
                     i.getOutput().writeObject(message); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
                     i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
@@ -105,6 +107,7 @@ public class Room  {
 
     public void addUser(ChatUser user){
         activeUsers.add(user); // Adds new user to room
+
     }
 
     /**
