@@ -85,11 +85,13 @@ public class Room  {
 
 
         activeUsers.forEach(i -> { // For each user in this room
-            try {
-                i.getOutput().writeObject(message); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
-                i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            if(!(message.getUser().equals(i.getUser()))) { // if user is not the one who sent message
+                try {
+                    i.getOutput().writeObject(message); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
+                    i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }
