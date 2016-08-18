@@ -12,8 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -138,6 +137,12 @@ public class TerminalController implements Initializable {
         minimizeButton.setGraphic(minimizeIcon);
 
         attachmentImageView.setImage(new Image(classLoader.getResourceAsStream("Images/attachmentIcon.png")));
+
+        /*
+        BackgroundImage myBI= new BackgroundImage(new Image("my url",32,32,false,true),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+                */
 
     }
 
@@ -374,6 +379,12 @@ public class TerminalController implements Initializable {
 
     @FXML
     private URL location;
+
+    @FXML
+    private AnchorPane bannerPane;
+
+    @FXML
+    private AnchorPane menuBodyPane;
 
     @FXML
     private AnchorPane centerPanel;
