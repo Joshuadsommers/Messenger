@@ -158,7 +158,6 @@
                           <children>
                             <ImageView fx:id="bannerImageView" blendMode="EXCLUSION" fitHeight="223.00009155273438" fitWidth="413.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
                               <image>
-                                <Image url="@../../../../../IdeaProjects/RunescapeToolkit/Images/blueblackbackground.jpg" />
                               </image>
                             </ImageView>
                             <Circle fx:id="pictureCircle" blendMode="EXCLUSION" fill="DODGERBLUE" layoutX="64.0" layoutY="80.0" radius="49.5" stroke="BLACK" strokeType="INSIDE" />
@@ -179,7 +178,6 @@
                             </Label>
                             <ImageView fx:id="settingsLabel" blendMode="DARKEN" fitHeight="20.0" fitWidth="20.0" layoutX="379.0" layoutY="7.0" pickOnBounds="true" preserveRatio="false">
                               <image>
-                                <Image url="@../../../../../Pictures/ProgrammingPictures/settings_icon.png" />
                               </image>
                             </ImageView>
                           </children>

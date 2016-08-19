@@ -354,6 +354,9 @@ public class TerminalController implements Initializable {
             while(menuPanel.getLayoutX() < 0){
                 try {
                     menuPanel.setLayoutX(menuPanel.getLayoutX() + 1);
+                    //if(centerPanel.getOpacity() > 60) {
+                    //   centerPanel.setOpacity(centerPanel.getOpacity() - 1);
+                    //}
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -377,6 +380,16 @@ public class TerminalController implements Initializable {
 
                 try {
                     menuPanel.setLayoutX(menuPanel.getLayoutX() - 1);
+                    if(centerPanel.isDisabled()) {
+                        centerPanel.setDisable(false);
+                    }
+                    if(menuPanel.getLayoutX() == -menuPanel.getWidth()) {
+                        Thread temp = new Thread( () -> {
+                            centerPanel.toFront();
+                            Thread.currentThread().interrupt();
+                        });
+                        Platform.runLater(temp);
+                    }
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -384,13 +397,13 @@ public class TerminalController implements Initializable {
             }
             menuPanel.setLayoutX(-(menuPanel.getWidth()));
             menuButton.setDisable(false);
-            centerPanel.setDisable(false);
+            //centerPanel.setDisable(false);
             Thread.currentThread().interrupt();
             return;
 
         });
         translationThread.start();
-        centerPanel.toFront();
+        //centerPanel.toFront();
     }
 
     public void disable(){
