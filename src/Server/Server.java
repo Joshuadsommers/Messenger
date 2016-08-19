@@ -1,10 +1,7 @@
 package Server;
 
-import objects.ChatUser;
-import objects.MessageToServer;
 import objects.RoomHandler;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

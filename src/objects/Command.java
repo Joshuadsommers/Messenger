@@ -1,11 +1,11 @@
 package objects;
 
-import Server.ServerMessage;
+import Server.MessageToServer;
 
 /**
  * Created by Adam on 8/18/2016.
  */
-public class Command extends ServerMessage {
+public class Command extends MessageToServer {
 
     private String command;
     private int key;

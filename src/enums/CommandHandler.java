@@ -49,7 +49,7 @@ public final class CommandHandler {
             if(type.equals(CommandType.SERVER_COMMAND)) sendServerCommand(commandValue);
             else sendClientCommand(commandValue);
         }
-        else MasterClass.client.addErrorMessage("[ERROR] Invalid Command Entered: [" + command + "]");
+        else MasterClass.client.addInformationMessage("[ERROR] Invalid Command Entered: [" + command + "]");
 
 
     }

@@ -1,13 +1,16 @@
 package Client;
 
+import Server.InformationMessage;
 import Server.Room;
 import chat.ChatPreferencesWindow;
 import chat.FontLabel;
 import enums.CommandHandler;
+import enums.InformationType;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -85,6 +88,13 @@ public class TerminalController implements Initializable {
         chatIcon.setFitHeight(15);
         chatIcon.setBlendMode(BlendMode.EXCLUSION);
         joinRoomButton.setGraphic(chatIcon);
+
+        ImageView addIcon = new ImageView();
+        addIcon.setImage(new Image(classLoader.getResourceAsStream("Images/add_icon.png")));
+        addIcon.setFitWidth(15);
+        addIcon.setFitHeight(15);
+        addIcon.setBlendMode(BlendMode.EXCLUSION);
+        createRoomButton.setGraphic(addIcon);
 
         ImageView menuIcon = new ImageView();
         menuIcon.setImage(new Image(classLoader.getResourceAsStream("Images/menu_icon.png")));
@@ -296,19 +306,39 @@ public class TerminalController implements Initializable {
     public void clearScreen(int key){
         Thread thread = new Thread(() ->{
             chatWindow.getChildren().clear();
+            Thread.currentThread().interrupt();
         });
         Platform.runLater(thread);
 
     }
 
-    public void receiveInput(Object input){
-        if(input.getClass().equals(Message.class)){
-            appendMessage((Message) input);
-        }
+    public void addInformationMessage(String message){
+        chatWindow.getChildren().add(new InformationLabel(message));
+    }
+    public void addToChatWindow(Node node){
+        Thread thread = new Thread(() ->{
+            chatWindow.getChildren().add(node);
+            Thread.currentThread().interrupt();
+        });
+        Platform.runLater(thread);
     }
 
-    public void addErrorMessage(String message){
-        chatWindow.getChildren().add(new ErrorLabel(message));
+    public void receiveInformationMessage(InformationMessage message){
+        InformationLabel messageLabel = new InformationLabel(message);
+        System.out.println(message.getText());
+        addToChatWindow(messageLabel);
+
+        if(message.getType().equals(InformationType.USER_JOINED)) addOnline(message.getUser());
+
+    }
+
+    private void addOnline(User user){
+
+        Thread thread = new Thread(() ->{
+            onlineBox.getChildren().add(new UserLabel(user));
+            Thread.currentThread().interrupt();
+        });
+        Platform.runLater(thread);
     }
 
     private synchronized void expand(){
@@ -565,6 +595,9 @@ public class TerminalController implements Initializable {
 
     @FXML
     private ListView<?> onlineList;
+
+    @FXML
+    private VBox onlineBox;
 
     @FXML
     private Label outboxLabel;

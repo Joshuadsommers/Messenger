@@ -99,6 +99,37 @@ public class Room  {
         });
     }
 
+    public void writeObject(Object object){
+
+        if(object.getClass().equals(Message.class)){
+            Message message = (Message) object;
+            sendMessage(message);
+        }
+
+        else if(object.getClass().equals(Command.class)){
+            Command command = (Command) object;
+            sendMessage(command);
+        }
+
+        else if(object.getClass().equals(InformationMessage.class)){
+            sendToAll(object);
+        }
+
+
+    }
+
+
+
+    public void sendToAll(Object object){
+        activeUsers.forEach(i -> { // For each user in this room
+            try {
+                i.getOutput().writeObject(object); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
+                i.getOutput().flush();             // Flushes the stream to ensure all bytes were sent across.
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+    }
     /**
      * @Method sendMessage receives a @Class Message parameter and writes it to every user in the @FinalClass RoomHandler.
      * @param command The @Class Command that was filtered through the @FinalClass ConnectionManager to reach this @FinalClass RoomHandler instance.
@@ -140,6 +171,7 @@ public class Room  {
      * @param user
      *        The @Class ChatUser that will be removed from the @FinalClass RoomHandler
      */
+
     public void removeUser(ChatUser user){
 
         activeUsers.remove(user);
@@ -153,16 +185,6 @@ public class Room  {
     public void closeRoom(){
         RoomHandler.removeRoom(this); // Removes this Instance from the @FinalClass RoomHandler
     }
-
-
-    public void addUser(InetAddress a) {
-        // Add user to addresses
-    }
-
-    public void removeUser(InetAddress a) {
-        // Remove user from addresses
-    }
-
 
     public int getKey() {
         return key;

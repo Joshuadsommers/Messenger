@@ -1,7 +1,9 @@
 package Client;
 
+import Server.InformationMessage;
 import enums.CommandHandler;
 import objects.Command;
+import objects.MasterClass;
 import objects.Message;
 import objects.User;
 
@@ -68,6 +70,8 @@ public class ConnectionHandler implements Runnable {
 
                 Object rawInput = input.readObject();
 
+
+
                 if(rawInput.getClass().equals(Message.class)){
 
                     Message message = (Message) rawInput;
@@ -82,6 +86,12 @@ public class ConnectionHandler implements Runnable {
 
                     CommandHandler.receiveCommand(command);
 
+                }
+
+                else if(rawInput.getClass().equals(InformationMessage.class)){
+                    InformationMessage message = (InformationMessage) rawInput;
+
+                    MasterClass.client.receiveInformationMessage(message);
                 }
 
 

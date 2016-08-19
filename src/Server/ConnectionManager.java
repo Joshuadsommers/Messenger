@@ -33,33 +33,29 @@ public class ConnectionManager implements Runnable {
         if(input.getClass().equals(Message.class)){
 
             Message message = (Message) input;
+            int key = message.getKey();
             history.add(message.toString());
 
-            writeToRoom(message);
+            writeToRoom(message, key);
 
         }
 
         else if(input.getClass().equals(Command.class)){
 
             Command command = (Command) input;
+            int key = command.getKey();
             history.add(command.toString());
 
-            writeToRoom(command);
+            writeToRoom(command, key);
 
         }
 
 
     }
 
-    private synchronized void writeToRoom(Message message){
+    private synchronized void writeToRoom(Object object, int key){
 
-        RoomHandler.sendMessage(message);
-
-    }
-
-    private synchronized void writeToRoom(Command command){
-
-        RoomHandler.sendCommand(command);
+        RoomHandler.writeToRoom(object, key);
 
     }
 
@@ -85,6 +81,10 @@ public class ConnectionManager implements Runnable {
                     User user = (User) input;
                     ChatUser chatUser = new ChatUser(user, out);
                     RoomHandler.addUser(chatUser, 0);
+
+                    InformationMessage newUserMessage = new InformationMessage("User: [" + user.getAlias() + "] has Connected.", user, 0);
+                    writeToRoom(newUserMessage, 0);
+
                 }
 
                 else readInput(input);

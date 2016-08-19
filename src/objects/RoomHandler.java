@@ -35,22 +35,20 @@ public final class RoomHandler {
         activeRooms.remove(room.getKey());
     }
 
-    public static void sendMessage(Message message){
-        try{
-            int key = message.getKey();                // Gets which room the message is going to
-            activeRooms.get(key).sendMessage(message); // Calls the "Send Message" method in that room directly.
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+    public static void writeToRoom(Object object, int key){
+
+            writeObject(object, key);
+
     }
 
-    public static void sendCommand(Command command){
+    private static void writeObject(Object object, int key){
+
         try{
-            int key = command.getKey();                // Gets which room the message is going to
-            activeRooms.get(key).sendMessage(command); // Calls the "Send Message" method in that room directly.
+            activeRooms.get(key).writeObject(object); // Calls the "Send Message" method in that room directly.
         } catch(Exception e){
             e.printStackTrace();
         }
+
     }
 
     public static void addUser(ChatUser user, int key){

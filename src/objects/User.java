@@ -105,5 +105,16 @@ public class User implements Serializable{
     public void setPermissions(String permissions) {
         this.permissions = permissions;
     }
+
+    public String toString(){
+        String value = "Alias: [" + getAlias() + "]" + "\n" +
+                        "Name: [" + getFullName() + "]" + "\n" +
+                        "Sex: [" + getSex() + "]" + "\n" +
+                        "Date of Birth: [" + getDob() + "]" + "\n" +
+                        "Joined: [" + getJoined() + "]" + "\n" +
+                        "Permissions: [" + getPermissions() + "]";
+        return value;
+
+    }
 }
 
