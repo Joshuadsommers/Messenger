@@ -7,17 +7,17 @@ import Server.ServerMessage;
  */
 public class Command extends ServerMessage {
 
-    private String value;
+    private String command;
     private int key;
 
-    public Command(User user, String value, int key){
+    public Command(User user, String command, int key){
         super(user);
-        this.value = value;
+        this.command = command;
         this.key = key;
     }
 
-    public String getValue() {
-        return value;
+    public String getCommand() {
+        return command;
     }
 
     public int getKey() {

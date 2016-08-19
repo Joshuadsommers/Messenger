@@ -171,7 +171,7 @@ public class TerminalController implements Initializable {
             handleLocalCommand(text);
         }
         else{
-            Message message = new Message(0, MasterClass.user, text, ChatPreferences.internalFont.getFamily(), ChatPreferences.getR(), ChatPreferences.getG(), ChatPreferences.getB(), false);
+            Message message = new Message(RoomHandler.getCurrentRoom(), MasterClass.user, text, ChatPreferences.internalFont.getFamily(), ChatPreferences.getR(), ChatPreferences.getG(), ChatPreferences.getB(), false);
             sendMessage(message);
         }
 

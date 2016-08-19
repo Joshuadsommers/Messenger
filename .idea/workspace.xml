@@ -62,41 +62,19 @@
       <file leaf-file-name="TerminalController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Client/TerminalController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+            <state relative-caret-position="507">
+              <caret line="171" column="9" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5591#5592#0" expanded="true" />
-                <element signature="e#5644#5645#0" expanded="true" />
+                <element signature="method#setPreferences#0;class#TerminalController#0" expanded="false" />
+                <element signature="e#5618#5619#0" expanded="true" />
+                <element signature="e#5671#5672#0" expanded="true" />
                 <element signature="method#createListeners#0;class#TerminalController#0" expanded="false" />
                 <element signature="method#updateFonts#0;class#TerminalController#0" expanded="false" />
-                <element signature="e#9362#9363#0" expanded="true" />
-                <element signature="e#9410#9411#0" expanded="true" />
+                <element signature="e#9389#9390#0" expanded="true" />
+                <element signature="e#9437#9438#0" expanded="true" />
                 <element signature="method#receiveInput#0;class#TerminalController#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TerminalFXML.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Client/TerminalFXML.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="226" column="18" selection-start-line="226" selection-start-column="18" selection-end-line="226" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectionManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/ConnectionManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-324">
-              <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -117,8 +95,8 @@
       <file leaf-file-name="ServerMessage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server/ServerMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#393#394#0" expanded="true" />
@@ -133,8 +111,8 @@
       <file leaf-file-name="MasterClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/objects/MasterClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#502#503#0" expanded="true" />
@@ -144,17 +122,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Command.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/objects/Command.java">
+      <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/enums/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="306">
+              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
               <folding>
-                <element signature="e#346#347#0" expanded="true" />
-                <element signature="e#374#375#0" expanded="true" />
-                <element signature="e#401#402#0" expanded="true" />
-                <element signature="e#427#428#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/enums/CommandType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="e#172#173#0" expanded="true" />
+                <element signature="e#210#211#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/enums/RequestType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageToServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/objects/MessageToServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -201,16 +209,19 @@
         <option value="$PROJECT_DIR$/src/objects/ChatPreferences.java" />
         <option value="$PROJECT_DIR$/src/chat/ChatPreferencesWindow.java" />
         <option value="$PROJECT_DIR$/src/chat/ChatPreferencesController.java" />
-        <option value="$PROJECT_DIR$/src/enums/CommandHandler.java" />
         <option value="$PROJECT_DIR$/src/Client/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/src/Server/ConnectionManager.java" />
         <option value="$PROJECT_DIR$/src/objects/MasterClassUser.java" />
         <option value="$PROJECT_DIR$/src/Client/TerminalFXML.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/TerminalController.java" />
         <option value="$PROJECT_DIR$/src/objects/MasterClass.java" />
         <option value="$PROJECT_DIR$/src/objects/Message.java" />
         <option value="$PROJECT_DIR$/src/Server/ServerMessage.java" />
+        <option value="$PROJECT_DIR$/src/enums/ServerRequest.java" />
         <option value="$PROJECT_DIR$/src/objects/Command.java" />
+        <option value="$PROJECT_DIR$/src/Client/RoomHandler.java" />
+        <option value="$PROJECT_DIR$/src/Client/TerminalController.java" />
+        <option value="$PROJECT_DIR$/src/enums/CommandType.java" />
+        <option value="$PROJECT_DIR$/src/enums/CommandHandler.java" />
       </list>
     </option>
   </component>
@@ -789,6 +800,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -805,7 +817,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -860,24 +871,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Server/ConnectionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/ServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/Room.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -904,12 +897,13 @@
           <caret line="74" column="35" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5591#5592#0" expanded="true" />
-            <element signature="e#5644#5645#0" expanded="true" />
+            <element signature="method#setPreferences#0;class#TerminalController#0" expanded="false" />
+            <element signature="e#5618#5619#0" expanded="true" />
+            <element signature="e#5671#5672#0" expanded="true" />
             <element signature="method#createListeners#0;class#TerminalController#0" expanded="false" />
             <element signature="method#updateFonts#0;class#TerminalController#0" expanded="false" />
-            <element signature="e#9362#9363#0" expanded="true" />
-            <element signature="e#9410#9411#0" expanded="true" />
+            <element signature="e#9389#9390#0" expanded="true" />
+            <element signature="e#9437#9438#0" expanded="true" />
             <element signature="method#receiveInput#0;class#TerminalController#0" expanded="false" />
           </folding>
         </state>
@@ -960,12 +954,13 @@
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5591#5592#0" expanded="true" />
-            <element signature="e#5644#5645#0" expanded="true" />
+            <element signature="method#setPreferences#0;class#TerminalController#0" expanded="false" />
+            <element signature="e#5618#5619#0" expanded="true" />
+            <element signature="e#5671#5672#0" expanded="true" />
             <element signature="method#createListeners#0;class#TerminalController#0" expanded="false" />
             <element signature="method#updateFonts#0;class#TerminalController#0" expanded="false" />
-            <element signature="e#9362#9363#0" expanded="true" />
-            <element signature="e#9410#9411#0" expanded="true" />
+            <element signature="e#9389#9390#0" expanded="true" />
+            <element signature="e#9437#9438#0" expanded="true" />
             <element signature="method#receiveInput#0;class#TerminalController#0" expanded="false" />
           </folding>
         </state>
@@ -977,16 +972,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/MessageToServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1188,18 +1173,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/CommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#679#680#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Override.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1235,31 +1208,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/TerminalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5591#5592#0" expanded="true" />
-            <element signature="e#5644#5645#0" expanded="true" />
-            <element signature="method#createListeners#0;class#TerminalController#0" expanded="false" />
-            <element signature="method#updateFonts#0;class#TerminalController#0" expanded="false" />
-            <element signature="e#9362#9363#0" expanded="true" />
-            <element signature="e#9410#9411#0" expanded="true" />
-            <element signature="method#receiveInput#0;class#TerminalController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ServerRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/ServerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1281,8 +1229,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/ServerMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#393#394#0" expanded="true" />
@@ -1293,10 +1241,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#386#387#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/MasterClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#502#503#0" expanded="true" />
@@ -1305,15 +1266,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/Command.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/RoomHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        <state relative-caret-position="85">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding>
-            <element signature="e#346#347#0" expanded="true" />
-            <element signature="e#374#375#0" expanded="true" />
-            <element signature="e#401#402#0" expanded="true" />
-            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#130#131#0" expanded="true" />
+            <element signature="e#154#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/TerminalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="171" column="9" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setPreferences#0;class#TerminalController#0" expanded="false" />
+            <element signature="e#5618#5619#0" expanded="true" />
+            <element signature="e#5671#5672#0" expanded="true" />
+            <element signature="method#createListeners#0;class#TerminalController#0" expanded="false" />
+            <element signature="method#updateFonts#0;class#TerminalController#0" expanded="false" />
+            <element signature="e#9389#9390#0" expanded="true" />
+            <element signature="e#9437#9438#0" expanded="true" />
+            <element signature="method#receiveInput#0;class#TerminalController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/RequestType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/MessageToServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/CommandType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#172#173#0" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
