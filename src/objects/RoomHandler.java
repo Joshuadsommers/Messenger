@@ -44,6 +44,15 @@ public final class RoomHandler {
         }
     }
 
+    public static void sendCommand(Command command){
+        try{
+            int key = command.getKey();                // Gets which room the message is going to
+            activeRooms.get(key).sendMessage(command); // Calls the "Send Message" method in that room directly.
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void addUser(ChatUser user, int key){
         getRoom(key).addUser(user);
     }

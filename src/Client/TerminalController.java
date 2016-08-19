@@ -21,10 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import objects.ChatPreferences;
-import objects.MasterClass;
-import objects.Message;
-import objects.MessageLabel;
+import objects.*;
 
 import java.awt.*;
 import java.net.URL;
@@ -166,19 +163,19 @@ public class TerminalController implements Initializable {
 
     }
 
+    private void sendCommand(String text){
+        CommandHandler.sendCommand(text);
+    }
+
     private void verifyMessage(String text){
         if(text.startsWith("-")){
-            handleLocalCommand(text);
+            sendCommand(text);
         }
         else{
-            Message message = new Message(RoomHandler.getCurrentRoom(), MasterClass.user, text, ChatPreferences.internalFont.getFamily(), ChatPreferences.getR(), ChatPreferences.getG(), ChatPreferences.getB(), false);
+            Message message = new Message(RoomHandler.getCurrentRoomKey(), MasterClass.user, text, ChatPreferences.internalFont.getFamily(), ChatPreferences.getR(), ChatPreferences.getG(), ChatPreferences.getB(), false);
             sendMessage(message);
         }
 
-    }
-
-    private void handleLocalCommand(String command){
-        CommandHandler.handleCommand(command);
     }
 
     private void createListeners(){
@@ -296,14 +293,22 @@ public class TerminalController implements Initializable {
 
     }
 
-    public void clearScreen(){
-        chatWindow.getChildren().clear();
+    public void clearScreen(int key){
+        Thread thread = new Thread(() ->{
+            chatWindow.getChildren().clear();
+        });
+        Platform.runLater(thread);
+
     }
 
     public void receiveInput(Object input){
         if(input.getClass().equals(Message.class)){
             appendMessage((Message) input);
         }
+    }
+
+    public void addErrorMessage(String message){
+        chatWindow.getChildren().add(new ErrorLabel(message));
     }
 
     private synchronized void expand(){

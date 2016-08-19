@@ -5,7 +5,9 @@ package Client;
  */
 public final class RoomHandler {
 
-    public static int getCurrentRoom(){
+    public static int getCurrentRoomKey(){
         return 0;
     }
+
+
 }

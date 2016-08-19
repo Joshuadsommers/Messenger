@@ -27,11 +27,6 @@ public class MessageLabel extends Label {
 
         setOnMouseExited(Event ->{
             setScaleY(1.0); // Once the mouse is exited, we return the label to the normal size.
-            setScaleY(1.4);
-        });
-
-        setOnMouseExited(Event ->{
-            setScaleY(1.0);
         });
 
         setOnMouseClicked(Event ->{

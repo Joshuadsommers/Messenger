@@ -5,12 +5,6 @@ package enums;
  */
 public enum CommandType {
 
-    CLEAR_SCREEN ("-cls");
-
-    private String command;
-
-    CommandType(String command){
-        this.command = command;
-    }
+    SERVER_COMMAND, CLIENT_COMMAND;
 
 }

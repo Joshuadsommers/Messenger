@@ -24,4 +24,8 @@ public class Command extends ServerMessage {
         return key;
     }
 
+    public String toString(){
+        return "User: [" + getUser() + "] Command: [" + getCommand() + "] Room Key: [" + getKey() + "]";
+    }
+
 }

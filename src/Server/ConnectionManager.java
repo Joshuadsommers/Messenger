@@ -29,20 +29,37 @@ public class ConnectionManager implements Runnable {
 
     private synchronized void readInput(Object input){
 
-       // if(input.getClass().equals(Message.class)){
+
+        if(input.getClass().equals(Message.class)){
 
             Message message = (Message) input;
             history.add(message.toString());
 
             writeToRoom(message);
 
-       // }
+        }
+
+        else if(input.getClass().equals(Command.class)){
+
+            Command command = (Command) input;
+            history.add(command.toString());
+
+            writeToRoom(command);
+
+        }
+
 
     }
 
     private synchronized void writeToRoom(Message message){
 
         RoomHandler.sendMessage(message);
+
+    }
+
+    private synchronized void writeToRoom(Command command){
+
+        RoomHandler.sendCommand(command);
 
     }
 

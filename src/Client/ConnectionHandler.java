@@ -1,5 +1,6 @@
 package Client;
 
+import enums.CommandHandler;
 import objects.Command;
 import objects.Message;
 import objects.User;
@@ -21,8 +22,8 @@ public class ConnectionHandler implements Runnable {
     private User user;
     TerminalController terminal;
 
-    ObjectInputStream input;
-    ObjectOutputStream output;
+    private static ObjectInputStream input;
+    private static ObjectOutputStream output;
 
     public ConnectionHandler(User user, TerminalController terminal){
 
@@ -75,6 +76,14 @@ public class ConnectionHandler implements Runnable {
 
                 }
 
+                else if(rawInput.getClass().equals(Command.class)){
+
+                    Command command = (Command) rawInput;
+
+                    CommandHandler.receiveCommand(command);
+
+                }
+
 
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -84,6 +93,13 @@ public class ConnectionHandler implements Runnable {
     }
 
     public static void sendCommand(Command command){
+
+        try {
+            output.writeObject(command);
+            output.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

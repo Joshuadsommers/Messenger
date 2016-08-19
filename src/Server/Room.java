@@ -1,6 +1,7 @@
 package Server;
 
 import objects.ChatUser;
+import objects.Command;
 import objects.Message;
 import objects.RoomHandler;
 
@@ -90,6 +91,28 @@ public class Room  {
                 System.out.println(i.getUser());
                 try {
                     i.getOutput().writeObject(message); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
+                    i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * @Method sendMessage receives a @Class Message parameter and writes it to every user in the @FinalClass RoomHandler.
+     * @param command The @Class Command that was filtered through the @FinalClass ConnectionManager to reach this @FinalClass RoomHandler instance.
+     *
+     */
+    public void sendMessage(Command command){
+
+
+        activeUsers.forEach(i -> { // For each user in this room
+            if(!(command.getUser().equals(i.getUser()))) { // if user is not the one who sent message
+                System.out.println(command.getUser());
+                System.out.println(i.getUser());
+                try {
+                    i.getOutput().writeObject(command); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
                     i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
                 } catch (IOException e1) {
                     e1.printStackTrace();
