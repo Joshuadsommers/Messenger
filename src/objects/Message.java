@@ -25,20 +25,26 @@ public class Message implements Serializable {
     private User user;
 
     private int key;
-    private Font font;
-    private Color fontColor;
+    private String font;
+    private String fontColor;
     private boolean timestamp;
 
     private String rawText;
     private String timeStamp;
     private String message;
 
-    public Message(int key, User user, String rawText, Font font, Color fontColor, boolean timestamp){
+    private double r;
+    private double g;
+    private double b;
+
+    public Message(int key, User user, String rawText, String font, double r, double g, double b, boolean timestamp){
         this.key = key;
         this.user = user;
         this.rawText = rawText;
         this.font = font;
-        this.fontColor = fontColor;
+        this.r = r;
+        this.g = g;
+        this.b = b;
         this.timestamp = timestamp;
 
         this.timeStamp = timeStamp();
@@ -79,19 +85,43 @@ public class Message implements Serializable {
         return "<" + key + ">" + getMessage();
     }
 
-    public Font getFont() {
+    public String getFont() {
         return font;
     }
 
-    public void setFont(Font font) {
+    public void setFont(String font) {
         this.font = font;
     }
 
-    public Color getFontColor() {
+    public String getFontColor() {
         return fontColor;
     }
 
-    public void setFontColor(Color fontColor) {
+    public void setFontColor(String fontColor) {
         this.fontColor = fontColor;
+    }
+
+    public double getR() {
+        return r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
+    }
+
+    public double getG() {
+        return g;
+    }
+
+    public void setG(double g) {
+        this.g = g;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
     }
 }

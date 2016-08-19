@@ -60,6 +60,58 @@
 }
 
 
+
+.combo-box-popup .list-view .scroll-bar:vertical .track{
+    -fx-background-color: rgb(35, 35, 35);
+    -fx-border-color:derive(gray,80%);
+
+    -fx-background-radius: 2em;
+    -fx-border-radius:2em;
+}
+
+.combo-box-popup .list-view .scroll-bar:vertical .thumb {
+    -fx-background-color:rgb(70,70,70);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+
+.combo-box-popup .list-view .scroll-bar:vertical .increment-button {
+    -fx-background-color:black;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+
+.combo-box-popup .list-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color:black;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color:rgb(35, 35, 35);
+}
+.combo-box-popup .list-view .list-cell{
+    -fx-background-color:rgb(20,20,20);
+}
+
+
+
 .context-menu {
       -fx-background-color:
         linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%);

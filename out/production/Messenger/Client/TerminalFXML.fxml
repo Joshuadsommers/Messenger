@@ -190,6 +190,7 @@
                         </AnchorPane>
                       </items>
                     </SplitPane>
+                    <ImageView fx:id="chatSettingsImageView" fitHeight="32.75001525878906" fitWidth="43.66668701171875" layoutX="1067.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
                   </children>
                 </AnchorPane>
               </children>
@@ -218,7 +219,7 @@
                   <effect>
                     <Reflection fraction="1.0" topOffset="-25.0" topOpacity="0.4444444444444444">
                       <input>
-                        <DropShadow blurType="GAUSSIAN" color="#00a3ff" height="31.07936507936508" radius="15.03968253968254" spread="0.746031746031746" width="31.07936507936508" />
+                        <DropShadow blurType="GAUSSIAN" color="#0c9900" height="31.07936507936508" radius="15.03968253968254" spread="0.746031746031746" width="31.07936507936508" />
                       </input>
                     </Reflection>
                   </effect>
@@ -232,6 +233,6 @@
     </SplitPane>
   </children>
   <stylesheets>
-    <URL value="@styleSheets/MidnightStylesheet.css" />
+    <URL value="@/styleSheets/MidnightStylesheet.css" />
   </stylesheets>
 </AnchorPane>
