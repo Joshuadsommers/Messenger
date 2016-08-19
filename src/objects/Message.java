@@ -1,12 +1,6 @@
 package objects;
 
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
 <<<<<<< HEAD
@@ -19,8 +13,6 @@ public class Message implements Serializable {
 
 
 
-    private DateFormat dateFormat = new SimpleDateFormat("[MM/dd/YYYY HH:mm:ss] ");
-    private Calendar cal = Calendar.getInstance();
 
     private User user;
 
@@ -66,7 +58,7 @@ public class Message implements Serializable {
     }
 
     private String timeStamp(){
-        return dateFormat.format(cal.getTime());
+        return MasterClass.timeStamp();
     }
 
     public String getTimeStamp() {

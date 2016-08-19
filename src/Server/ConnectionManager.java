@@ -29,14 +29,14 @@ public class ConnectionManager implements Runnable {
 
     private synchronized void readInput(Object input){
 
-        if(input.getClass().equals(Message.class)){
+       // if(input.getClass().equals(Message.class)){
 
             Message message = (Message) input;
             history.add(message.toString());
 
             writeToRoom(message);
 
-        }
+       // }
 
     }
 

@@ -2,7 +2,7 @@ package enums;
 
 import Client.ConnectionHandler;
 import objects.Command;
-import objects.MasterClassUser;
+import objects.MasterClass;
 
 /**
  * Created by Adam on 8/18/2016.
@@ -25,7 +25,7 @@ public class CommandHandler {
     }
 
     private static void clearScreen(){
-        MasterClassUser.client.clearScreen();
+        MasterClass.client.clearScreen();
     }
 
     private static void sendRemoteCommand(String value){

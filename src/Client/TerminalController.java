@@ -22,7 +22,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import objects.ChatPreferences;
-import objects.MasterClassUser;
+import objects.MasterClass;
 import objects.Message;
 import objects.MessageLabel;
 
@@ -64,18 +64,14 @@ public class TerminalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MasterClassUser.client = this;
+        MasterClass.client = this;
         setGraphics();
         setPreferences();
         createListeners();
         connect();
-
-
     }
 
     private void connect(){
-
-
 
         Thread thread = new Thread(() ->{
             connectionHandler.connect();
@@ -127,44 +123,46 @@ public class TerminalController implements Initializable {
     private void setPreferences(){
 
         chatWindowScrollPane.vvalueProperty().bind(chatWindow.heightProperty());
+
         fontSizeComboBox.getItems().clear();
         fontSizeComboBox.getItems().add(14);
         fontSizeComboBox.getItems().add(16);
         fontSizeComboBox.getItems().add(18);
 
-        fontColorComboBox.getItems().clear();
+
         setFontColorBox();
-        fontColorComboBox.getSelectionModel().select(0);
-        fontColorComboBox.getSelectionModel().getSelectedItem().setBlendMode(BlendMode.EXCLUSION);
-
-
-
-        fontTypeComboBox.getItems().clear();
-
         setFontComboBox();
 
 
         ChatPreferences.internalFont = new javafx.scene.text.Font(fontType, 14);
         ChatPreferences.internalFontColor = fontColorComboBox.getSelectionModel().getSelectedItem().getColor();
 
-
-        System.out.println(ChatPreferences.internalFont.getFamily());
-        System.out.println(ChatPreferences.internalFontColor.toString());
-        connectionHandler = new ConnectionHandler(MasterClassUser.user, this);
+        connectionHandler = new ConnectionHandler(MasterClass.user, this);
 
     }
 
 
     private void setFontColorBox(){
+        fontColorComboBox.getItems().clear();
         ChatPreferences.colorMap.keySet().forEach(color ->{
             fontColorComboBox.getItems().add(new FontLabel(ChatPreferences.colorMap.get(color), color));
         });
+
+        fontColorComboBox.getSelectionModel().select(0);
+        fontColorComboBox.getSelectionModel().getSelectedItem().setBlendMode(BlendMode.EXCLUSION);
+
+
     }
 
     private void setFontComboBox(){
+        fontTypeComboBox.getItems().clear();
         ChatPreferences.fonts.forEach(font ->{
-            fontTypeComboBox.getItems().add(new FontLabel(font));
+            FontLabel label = new FontLabel(font);
+            label.setBlendMode(BlendMode.EXCLUSION);
+            fontTypeComboBox.getItems().add(label);
         });
+        fontTypeComboBox.getSelectionModel().select(0);
+        fontTypeComboBox.getSelectionModel().getSelectedItem();
 
     }
 
@@ -173,7 +171,7 @@ public class TerminalController implements Initializable {
             handleLocalCommand(text);
         }
         else{
-            Message message = new Message(0, MasterClassUser.user, text, ChatPreferences.internalFont.getFamily(), ChatPreferences.getR(), ChatPreferences.getG(), ChatPreferences.getB(), false);
+            Message message = new Message(0, MasterClass.user, text, ChatPreferences.internalFont.getFamily(), ChatPreferences.getR(), ChatPreferences.getG(), ChatPreferences.getB(), false);
             sendMessage(message);
         }
 
@@ -292,7 +290,7 @@ public class TerminalController implements Initializable {
     }
 
     private void sendMessage(Message message){
-        //appendMessage(message); // Appends to own client before sending to server, for faster chatting.
+
         addClientMessage(message);
         connectionHandler.sendMessage(message);
 
@@ -326,26 +324,19 @@ public class TerminalController implements Initializable {
                     e.printStackTrace();
                 }
             }
+            menuPanel.setLayoutX(0);
             menuButton.setDisable(false);
+            Thread.currentThread().interrupt();
+            return;
 
         });
         translationThread.start();
-
-/*
-        menuPanel.setVisible(true);
-        centerPanel.setDisable(true);
-        expanded = true;
-*/
     }
 
     private synchronized void collapse(){
 
-        menuPanel.toBack();
-
         expanded = false;
-
         menuButton.setDisable(true);
-
         translationThread = new Thread(() ->{
             while(menuPanel.getLayoutX() > -(menuPanel.getWidth())){
 
@@ -356,19 +347,15 @@ public class TerminalController implements Initializable {
                     e.printStackTrace();
                 }
             }
+            menuPanel.setLayoutX(-(menuPanel.getWidth()));
             menuButton.setDisable(false);
             centerPanel.setDisable(false);
+            Thread.currentThread().interrupt();
+            return;
 
         });
         translationThread.start();
         centerPanel.toFront();
-/*
-
-
-        menuPanel.setVisible(false);
-        centerPanel.setDisable(false);
-        expanded = false;
-*/
     }
 
     public void disable(){
@@ -386,39 +373,14 @@ public class TerminalController implements Initializable {
             MessageLabel messageLabel = new MessageLabel(message);
 
             messageLabel.setBlendMode(BlendMode.EXCLUSION);
-            // messageLabel.setFont(new javafx.scene.text.Font(fontType, fontSize));
             messageLabel.setFont(ChatPreferences.internalFont);
             messageLabel.setTextFill(ChatPreferences.internalFontColor);
-            //messageLabel.setTextFill(fontColor);
             messageLabel.setMaxSize(chatWindow.getWidth() - 25, chatWindow.getHeight());
-            //messageLabel.setStyle("-fx-font-weight: bold;"); // MAKES FONT BOLD
             messageLabel.setWrapText(true);
 
 
             chatWindow.getChildren().add(messageLabel);
 
-            /*
-            MessageLabel messageLabel = new MessageLabel(message);
-
-            messageLabel.setBlendMode(BlendMode.EXCLUSION);
-           // messageLabel.setFont(new javafx.scene.text.Font(fontType, fontSize));
-            if(ChatPreferences.overrideExternalFonts) {
-                messageLabel.setFont(ChatPreferences.externalFont);
-                messageLabel.setTextFill(ChatPreferences.externalFontColor);
-            }
-            else{
-                messageLabel.setFont(new javafx.scene.text.Font(message.getFont(), fontSize));
-
-                messageLabel.setTextFill(Color.color(message.getR(), message.getG(), message.getB()));
-            }
-            //messageLabel.setTextFill(fontColor);
-            messageLabel.setMaxSize(chatWindow.getWidth() - 25, chatWindow.getHeight());
-            //messageLabel.setStyle("-fx-font-weight: bold;"); // MAKES FONT BOLD
-            messageLabel.setWrapText(true);
-
-
-            chatWindow.getChildren().add(messageLabel);
-            */
         });
 
         Platform.runLater(thread);
@@ -469,8 +431,6 @@ public class TerminalController implements Initializable {
         });
 
         Platform.runLater(thread);
-
-
 
     }
 
