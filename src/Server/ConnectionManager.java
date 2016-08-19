@@ -80,9 +80,10 @@ public class ConnectionManager implements Runnable {
                 else if(input.getClass().equals(User.class)){
                     User user = (User) input;
                     ChatUser chatUser = new ChatUser(user, out);
+                    InformationMessage newUserMessage = new InformationMessage("User: [" + user.getAlias() + "] has Connected.", user, 0);
                     RoomHandler.addUser(chatUser, 0);
 
-                    InformationMessage newUserMessage = new InformationMessage("User: [" + user.getAlias() + "] has Connected.", user, 0);
+
                     writeToRoom(newUserMessage, 0);
 
                 }

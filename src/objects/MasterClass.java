@@ -14,7 +14,7 @@ public final class MasterClass {
     private static DateFormat dateFormat = new SimpleDateFormat("[MM/dd/YYYY HH:mm:ss] ");
     private static Calendar cal = Calendar.getInstance();
 
-    public static User user = new User("Dhaxic");
+    public static User user = new User("Syndicate");
     public static TerminalController client;
 
     public static String timeStamp(){

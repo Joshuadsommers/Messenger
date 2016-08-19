@@ -83,7 +83,7 @@ public class InformationLabel extends Label {
 
             case USER_JOINED:
                 tooltipText = "Time: " + timestamp + "\n" +
-                        "User: [" + user + "]" + "\n" +
+                        "User: [" + user.getAlias() + "]" + "\n" +
                         "Room Key: [" + key + "]" + "\n" +
                         "Message Type: [" + type + "]";
 

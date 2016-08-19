@@ -76,7 +76,7 @@
                   <tabs>
                     <Tab closable="false" disable="false" text="Global Chat">
                       <content>
-                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1231.0">
+                        <AnchorPane id="Content" fx:id="chatWindowPane" minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1231.0">
                           <children>
                             <SplitPane focusTraversable="true" layoutX="13.0" layoutY="13.0" orientation="VERTICAL" prefHeight="705.0" prefWidth="1204.0">
                               <items>

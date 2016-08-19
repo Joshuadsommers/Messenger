@@ -521,6 +521,9 @@ public class TerminalController implements Initializable {
     private URL location;
 
     @FXML
+    private AnchorPane chatWindowPane;
+
+    @FXML
     private ImageView chatSettingsImageView;
 
     @FXML
