@@ -16,12 +16,12 @@ import java.util.HashMap;
 public class ConnectionManager implements Runnable {
 
     //private HashMap<Integer, ArrayList<ObjectOutputStream>> activeRooms = new HashMap<>(); // Key is Room ID Number, Value is the Array of ObjectOutputStreams going to clients that are connected to that room.
-    private HashMap<Integer, Room> activeRooms = new HashMap<>();
 
     public static ArrayList<String> history = new ArrayList<>(); // Global History of all messages received
 
     private Socket socket;
 
+    private User user;
     public ConnectionManager(Socket socket){
         this.socket = socket;
     }
@@ -72,19 +72,16 @@ public class ConnectionManager implements Runnable {
             for (;;) {
 
                 Object input = in.readObject();
-
                 if (input == null) {
                     return;
                 }
 
                 else if(input.getClass().equals(User.class)){
-                    User user = (User) input;
+                     user = (User) input;
                     ChatUser chatUser = new ChatUser(user, out);
-                    InformationMessage newUserMessage = new InformationMessage("User: [" + user.getAlias() + "] has Connected.", user, 0);
                     RoomHandler.addUser(chatUser, 0);
 
 
-                    writeToRoom(newUserMessage, 0);
 
                 }
 
@@ -93,6 +90,19 @@ public class ConnectionManager implements Runnable {
             }
 
         } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Connection error");
+            System.out.println(user.getAlias());
+            final ChatUser[] removedUser = new ChatUser[1];
+            RoomHandler.getRooms().values().forEach(room -> {
+                Room temp = (Room) room;
+                temp.getActiveUsers().forEach(u -> {
+                   if(((ChatUser) u).getUser().getAlias().equals(user.getAlias())) {
+                       removedUser[0] = u;
+                       return;
+                   }
+                });
+                temp.removeUser(removedUser[0]);
+            });
             e.printStackTrace();
         }
 

@@ -30,6 +30,8 @@ import objects.*;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 
 /**
@@ -499,6 +501,23 @@ public class TerminalController implements Initializable {
         // Label message = new Label();
 
 
+    }
+
+    public void append(InformationMessage message){
+        addToChatWindow(new InformationLabel(message));
+
+
+    }
+
+    public void updateList(HashSet h) {
+        Thread thread = new Thread(() -> {
+            onlineBox.getChildren().clear();
+            System.out.println("Hits");
+            h.forEach(value -> {
+                onlineBox.getChildren().add(new UserLabel((User) value));
+            });
+        });
+        Platform.runLater(thread);
     }
 
 

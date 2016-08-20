@@ -3,6 +3,7 @@ package objects;
 import Server.Room;
 
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  *
  */
-public class ChatUser {
+public class ChatUser implements Serializable {
 
     public boolean visible = true;
     private ObjectOutputStream output;

@@ -2,6 +2,7 @@ package Client;
 
 import Server.InformationMessage;
 import enums.CommandHandler;
+import enums.InformationType;
 import objects.Command;
 import objects.MasterClass;
 import objects.Message;
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Created by Adam on 4/11/2016.
@@ -37,7 +40,7 @@ public class ConnectionHandler implements Runnable {
     public void connect(){
         while(!isConnected){
             try {
-                String IP = "52.43.163.58";           //"52.43.163.58";
+                String IP = "127.0.0.1";           //"52.43.163.58";
                 socket = new Socket(IP, 6969);
 
                 output = new ObjectOutputStream(socket.getOutputStream());
@@ -61,6 +64,8 @@ public class ConnectionHandler implements Runnable {
 
     private void whileConnected(){
         isConnected = true;
+
+        MasterClass.client.append(new InformationMessage("You have joined Global chat.", 0));
 
         sendMessage(user);
 
@@ -92,6 +97,11 @@ public class ConnectionHandler implements Runnable {
                     InformationMessage message = (InformationMessage) rawInput;
 
                     MasterClass.client.receiveInformationMessage(message);
+                }
+
+                else if(rawInput.getClass().equals(HashSet.class)) {
+                    System.out.println("Hits Connection Handler");
+                    MasterClass.client.updateList( (HashSet) rawInput);
                 }
 
 

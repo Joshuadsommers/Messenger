@@ -1,5 +1,7 @@
 package objects;
 
+import enums.InformationType;
+
 import java.io.Serializable;
 
 /**
@@ -39,6 +41,15 @@ public class Message implements Serializable {
         this.b = b;
         this.timestamp = timestamp;
 
+        this.timeStamp = timeStamp();
+
+        format();
+
+    }
+
+    public Message(int key, String rawText, InformationType type){
+        this.key = key;
+        this.rawText = rawText;
         this.timeStamp = timeStamp();
 
         format();

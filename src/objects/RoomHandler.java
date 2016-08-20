@@ -55,11 +55,11 @@ public final class RoomHandler {
         getRoom(key).addUser(user);
     }
 
-    public static void removeUser(ChatUser user){
-        activeUsers.remove(user);
+    public static void removeUser(ChatUser user, int key){
+        getRoom(key).removeUser(user);
     }
 
-    private static Room getRoom(int key){
+    public static Room getRoom(int key){
         return activeRooms.get(key);
     }
 
@@ -73,6 +73,9 @@ public final class RoomHandler {
         return (int) (Math.random() * 50000) + 1;
     }
 
+    public static HashMap getRooms() {
+        return activeRooms;
+    }
 
 
 }
