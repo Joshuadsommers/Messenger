@@ -4,6 +4,7 @@ import Server.InformationMessage;
 import Server.Room;
 import chat.ChatPreferencesWindow;
 import chat.FontLabel;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import enums.CommandHandler;
 import enums.InformationType;
 import javafx.application.Application;
@@ -144,6 +145,7 @@ public class TerminalController implements Initializable {
         ChatPreferences.internalFont = new javafx.scene.text.Font(fontType, 14);
         ChatPreferences.internalFontColor = fontColorComboBox.getSelectionModel().getSelectedItem().getColor();
 
+        centerPanel.toFront();
         connectionHandler = new ConnectionHandler(MasterClass.user, this);
 
     }
