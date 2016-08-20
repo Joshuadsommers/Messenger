@@ -1,9 +1,6 @@
 package Server;
 
-import objects.ChatUser;
-import objects.Command;
-import objects.Message;
-import objects.RoomHandler;
+import objects.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -31,6 +28,10 @@ public class Room  {
 
     private String password; // The password for a password protected room.
     private boolean passwordProtected = false;
+
+    public static HashSet<ChatUser> getActiveUsers() {
+        return activeUsers;
+    }
 
     public static HashSet<ChatUser> activeUsers = new HashSet<>(); // Global Array of all Active Users
 
@@ -115,6 +116,10 @@ public class Room  {
             sendToAll(object);
         }
 
+        else if(object.getClass().equals(HashSet.class)) {
+            sendToAll(object);
+        }
+
 
     }
 
@@ -160,7 +165,10 @@ public class Room  {
      */
 
     public void addUser(ChatUser user){
+        InformationMessage newUserMessage = new InformationMessage("User: [" + user.getUser().getAlias() + "] has Connected.", user.getUser(), key);
+        writeObject(newUserMessage);
         activeUsers.add(user); // Adds new user to room
+        updateLists();
 
     }
 
@@ -174,11 +182,24 @@ public class Room  {
 
     public void removeUser(ChatUser user){
 
-        activeUsers.remove(user);
-        RoomHandler.removeUser(user);
+        if(activeUsers.contains(user)){
+            System.out.println("Contained user: [" + user.getUser().getAlias() + "]");
+            activeUsers.remove(user);
+            RoomHandler.activeUsers.remove(user);
+
+        }
+
+        updateLists();
+        updateLists();
+
 
         if(activeUsers.size() == 0){
             closeRoom(); // Closes this instance of Room
+        }
+
+        else {
+            InformationMessage newUserMessage = new InformationMessage("User: [" + user.getUser().getAlias() + "] has Disconnected.", user.getUser(), key);
+            writeObject(newUserMessage);
         }
     }
 
@@ -188,5 +209,14 @@ public class Room  {
 
     public int getKey() {
         return key;
+    }
+
+    private synchronized void updateLists() {
+        HashSet<User> u = new HashSet<>();
+        activeUsers.forEach(value -> {
+            u.add(value.getUser());
+            System.out.println(value.getUser().getAlias());
+        });
+        writeObject(u);
     }
 }
