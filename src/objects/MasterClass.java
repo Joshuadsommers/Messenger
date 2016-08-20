@@ -18,6 +18,7 @@ public final class MasterClass {
     public static TerminalController client;
 
     public static String timeStamp(){
+        cal = Calendar.getInstance();
         return dateFormat.format(cal.getTime());
     }
 

@@ -37,7 +37,7 @@ public class ConnectionHandler implements Runnable {
     public void connect(){
         while(!isConnected){
             try {
-                String IP = "127.0.0.1";           //"52.43.163.58";
+                String IP = "52.43.163.58";           //"52.43.163.58";
                 socket = new Socket(IP, 6969);
 
                 output = new ObjectOutputStream(socket.getOutputStream());
