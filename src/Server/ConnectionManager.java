@@ -51,6 +51,38 @@ public class ConnectionManager implements Runnable {
 
         }
 
+        else if(input.getClass().equals(ServerRequest.class)){
+            receiveRequest((ServerRequest) input);
+        }
+
+    }
+
+    private synchronized void receiveRequest(ServerRequest request){
+
+        switch(request.getType()){
+            case ROOM_INVITE:
+
+                break;
+
+            case ROOM_REQUEST:
+                RoomHandler.createRoom(request.getRoom());
+                break;
+
+            case CLOSE_ROOM:
+
+                break;
+
+            case ALERT:
+
+                break;
+
+            case PRIVATE_MESSAGE:
+
+                break;
+
+            default:
+                System.out.println("No Case Statement for Server Request Type: " + request.getType());
+        }
 
     }
 
@@ -82,8 +114,6 @@ public class ConnectionManager implements Runnable {
                     chatUser = new ChatUser(user, out);
                     RoomHandler.addUser(chatUser, 0);
 
-
-
                 }
 
                 else readInput(input);
@@ -91,10 +121,9 @@ public class ConnectionManager implements Runnable {
             }
 
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println(user.getAlias() + " Disconnected");
-
 
             RoomHandler.removeUser(chatUser);
+
             /*
             final ChatUser[] removedUser = new ChatUser[1];
             RoomHandler.getRooms().values().forEach(room -> {
@@ -108,9 +137,6 @@ public class ConnectionManager implements Runnable {
                 temp.removeUser(removedUser[0]);
             });
 */
-
-
-
             e.printStackTrace();
         }
 

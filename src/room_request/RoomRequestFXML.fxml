@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="EXCLUSION" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="room_request.CreateRoomController">
+  <children>
+    <ToolBar fx:id="titleBar" layoutX="0.0" layoutY="0.0" prefWidth="695.0">
+      <items>
+        <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" />
+        <Label text="Create Room">
+          <font>
+            <Font name="Georgia" size="12.0" />
+          </font>
+        </Label>
+      </items>
+    </ToolBar>
+    <ToolBar layoutX="695.0" layoutY="0.0" prefHeight="31.0" prefWidth="80.00009999999747">
+      <items>
+        <Button fx:id="minimizeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="" />
+        <Button fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="" />
+      </items>
+    </ToolBar>
+    <SplitPane dividerPositions="" focusTraversable="true" layoutX="0.0" layoutY="31.0" orientation="VERTICAL" prefHeight="388.0" prefWidth="778.0">
+      <items>
+        <AnchorPane fx:id="bodyPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <Button fx:id="createRoomButton" layoutX="73.0" layoutY="351.0" mnemonicParsing="false" prefWidth="156.0" text="Create Room">
+              <font>
+                <Font name="Verdana" size="12.0" fx:id="x2" />
+              </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="139.0" text="Room Title:">
+              <font>
+                <Font name="Verdana Bold" size="12.0" fx:id="x1" />
+              </font>
+            </Label>
+            <TextField fx:id="titleField" layoutX="101.0" layoutY="138.0" prefWidth="200.0" />
+            <Label font="$x1" layoutX="14.0" layoutY="172.0" text="Password:" />
+            <TextField fx:id="passwordField" layoutX="101.0" layoutY="169.0" prefWidth="200.0" />
+            <Label font="$x1" layoutX="14.0" layoutY="110.0" text="Room Key:" />
+            <TextField fx:id="keyField" layoutX="101.0" layoutY="107.0" prefWidth="69.0" />
+            <CheckBox fx:id="passwordCheckBox" font="$x2" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" text="Password Protected" />
+            <CheckBox fx:id="staticCheckBox" font="$x2" layoutX="136.0" layoutY="14.0" mnemonicParsing="false" text="Static Room" />
+            <ScrollPane layoutX="317.0" layoutY="36.0" prefHeight="336.0" prefWidth="207.0">
+              <content>
+                <AnchorPane prefHeight="321.0" prefWidth="200.0">
+                  <children>
+                    <VBox fx:id="currentlyOnlineBox" layoutX="0.0" layoutY="0.0" prefHeight="321.0" prefWidth="200.0" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </ScrollPane>
+            <ScrollPane layoutX="547.0" layoutY="36.0" prefHeight="336.0" prefWidth="207.0">
+              <content>
+                <VBox fx:id="invitedBox" prefHeight="321.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <Label font="$x1" layoutX="347.0" layoutY="14.0" text="Currently Online: [0]" />
+            <Label font="$x1" layoutX="611.0" layoutY="14.0" text="Invited: [0]" />
+            <CheckBox fx:id="publicCheckBox" font="$x2" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Public" />
+            <Label font="$x1" layoutX="16.0" layoutY="198.0" text="Description" underline="true" />
+            <TextArea fx:id="descriptionField" layoutX="14.0" layoutY="220.0" prefHeight="118.0" prefWidth="287.0" wrapText="true" />
+            <Label fx:id="helpLabel" font="$x2" layoutX="14.0" layoutY="68.0" prefHeight="39.0" prefWidth="287.0" text="" wrapText="true" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>

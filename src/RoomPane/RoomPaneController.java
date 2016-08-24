@@ -3,9 +3,12 @@ package RoomPane;
 import Client.ConnectionHandler;
 import Client.RoomHandler;
 import Server.InformationMessage;
+import chat.ChatPreferencesWindow;
 import enums.CommandHandler;
 import enums.InformationType;
+import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -18,12 +21,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import objects.*;
+import room_request.CreateRoomWindow;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -41,6 +47,7 @@ public class RoomPaneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setGraphics();
         setPreferences();
+        createListeners();
     }
 
     private void setGraphics(){
@@ -78,6 +85,85 @@ public class RoomPaneController implements Initializable {
 
     private void setPreferences(){
         chatWindowScrollPane.vvalueProperty().bind(chatBox.heightProperty());
+    }
+
+    private void createListeners(){
+
+        chatLine.setOnAction(Event -> {
+
+            String text = chatLine.getText();
+
+            if (text.length() > 0) {
+                verifyMessage(text);
+                chatLine.setText("");
+            }
+        });
+
+        attachmentImageView.setOnMouseEntered(Event -> {
+            attachmentImageView.setScaleX(1.2);
+            attachmentImageView.setScaleY(1.2);
+
+        });
+
+        attachmentImageView.setOnMouseExited(Event -> {
+            attachmentImageView.setScaleX(1);
+            attachmentImageView.setScaleY(1);
+
+        });
+
+        fontImageView.setOnMouseClicked(Event -> {
+
+            if (Event.getClickCount() == 1) {
+                try {
+                    Application app = new ChatPreferencesWindow(MasterClass.client);
+                    Stage stage = new Stage();
+                    app.start(stage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+
+
+
+        EventHandler<MouseEvent> mouseEntered = mouseEvent -> {
+            Node source = (Node) mouseEvent.getSource();
+            source.setScaleX(1.2);
+            source.setScaleY(1.2);
+        };
+
+        EventHandler<MouseEvent> mouseExited = mouseEvent -> {
+            Node source = (Node) mouseEvent.getSource();
+            source.setScaleX(1);
+            source.setScaleY(1);
+        };
+        commandsImageView.setOnMouseEntered(mouseEntered);
+        historyImageView.setOnMouseEntered(mouseEntered);
+
+
+
+        commandsImageView.setOnMouseExited(mouseExited);
+        historyImageView.setOnMouseExited(mouseExited);
+
+
+
+        createRoomButton.setOnAction(Event ->{
+            createRoom();
+        });
+
+    }
+
+    private void createRoom(){
+
+        try {
+            Application app = new CreateRoomWindow();
+            Stage stage = new Stage();
+            app.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -137,7 +223,7 @@ public class RoomPaneController implements Initializable {
 
     }
 
-    private void addOnline(User user) {
+    public void addOnline(User user) {
 
         Thread thread = new Thread(() -> {
             onlineBox.getChildren().add(new UserLabel(user));
@@ -195,13 +281,6 @@ public class RoomPaneController implements Initializable {
     }
 
 
-    private void closeWindow() {
-
-        Stage stage = (Stage) mainPanel.getScene().getWindow();
-        stage.close();
-
-
-    }
 
 
     public void append(InformationMessage message) {

@@ -1,6 +1,7 @@
 package Client;
 
 import Server.InformationMessage;
+import Server.Room;
 import enums.CommandHandler;
 import enums.InformationType;
 import objects.Command;
@@ -69,7 +70,14 @@ public final class ConnectionHandler implements Runnable {
 
                 if(rawInput.getClass().equals(Message.class)){
                     Message message = (Message) rawInput;
-                    MasterClass.client.appendMessage(message);
+                    int key = message.getKey();
+                    if(key != 0){
+                        RoomHandler.getTab(key).appendMessage(message);
+                    }
+                    else{
+                        MasterClass.client.appendMessage(message);
+                    }
+
                 }
 
                 else if(rawInput.getClass().equals(Command.class)){
@@ -79,11 +87,20 @@ public final class ConnectionHandler implements Runnable {
 
                 else if(rawInput.getClass().equals(InformationMessage.class)){
                     InformationMessage message = (InformationMessage) rawInput;
-                    MasterClass.client.receiveInformationMessage(message);
+
+                    int key = message.getKey();
+                    if(key != 0){
+                        RoomHandler.getTab(key).receiveInformationMessage(message);
+                    }
+                    else{
+                        MasterClass.client.receiveInformationMessage(message);
+                    }
                 }
 
                 else if(rawInput.getClass().equals(HashSet.class)) {
+
                     MasterClass.client.updateList( (HashSet) rawInput);
+
                 }
 
 
@@ -93,6 +110,7 @@ public final class ConnectionHandler implements Runnable {
 
         }
     }
+
 
     public static void sendCommand(Command command){
 

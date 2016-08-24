@@ -18,6 +18,8 @@ public class InformationMessage implements Serializable {
     private User user;
     private InformationType type;
     private int key;
+    private SerializableRoom room;
+
 
     private DateFormat dateFormat = new SimpleDateFormat("[MM/dd/YYYY HH:mm:ss] ");
     private Calendar cal = Calendar.getInstance();
@@ -36,6 +38,14 @@ public class InformationMessage implements Serializable {
         this.key = key;
         this.type = type;
         this.timestamp = timeStamp();
+    }
+
+    public InformationMessage(String text, User user, InformationType type, SerializableRoom room){
+        this.text = text;
+        this.user = user;
+        this.type = type;
+        this.timestamp = timeStamp();
+        this.room = room;
     }
 
 
@@ -61,5 +71,13 @@ public class InformationMessage implements Serializable {
 
     public int getKey() {
         return key;
+    }
+
+    public SerializableRoom getRoom() {
+        return room;
+    }
+
+    public void setRoom(SerializableRoom room) {
+        this.room = room;
     }
 }

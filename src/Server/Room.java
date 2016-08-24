@@ -1,9 +1,11 @@
 package Server;
 
 import enums.InformationType;
+import javafx.fxml.Initializable;
 import objects.*;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.HashSet;
 
@@ -22,16 +24,37 @@ import java.util.HashSet;
  *
  */
 
-public class Room  {
+public class Room implements Serializable {
 
-    private int key; // The room's unique ID
-    private String title; // Title of the Room.
+    private int key;             // The room's unique ID
+    private String title;        // Title of the Room.
+    private String password;     // The password for a password protected room.
+    private String description;
+    private User owner;
 
-    private String password; // The password for a password protected room.
+    private boolean isPublic = false;
+    private boolean isStatic = false;
     private boolean passwordProtected = false;
 
 
     public static HashSet<ChatUser> activeUsers = new HashSet<>(); // Global Array of all Active Users
+
+
+
+    public Room(String title){
+        this.title = title;
+    }
+
+    public Room(SerializableRoom room){
+        this.key = room.getKey();
+        this.title = room.getTitle();
+        this.password = room.getPassword();
+        this.description = room.getDescription();
+        this.owner = room.getOwner();
+        this.isPublic = room.isPublic();
+        this.isStatic = room.isStatic();
+        this.passwordProtected = room.isPasswordProtected();
+    }
 
 
     /**
@@ -44,6 +67,7 @@ public class Room  {
      *
      * NOTE: This Constructor is used for rooms that do not require password protection
      */
+
     public Room(int key, String title){
         this.key = key;
         this.title = title;
@@ -116,9 +140,20 @@ public class Room  {
             sendToAll(object);
         }
 
-
     }
 
+    public SerializableRoom getSerializedVersion(){
+        SerializableRoom room = new SerializableRoom();
+        room.setKey(getKey());
+        room.setTitle(getTitle());
+        room.setPassword(getPassword());
+        room.setDescription(getDescription());
+        room.setOwner(getOwner());
+        room.setPublic(isPublic());
+        room.setStatic(isStatic());
+        room.setPasswordProtected(isPasswordProtected());
+        return room;
+    }
 
 
     public void sendToAll(Object object){
@@ -199,6 +234,10 @@ public class Room  {
         return key;
     }
 
+    public void setKey(int key){
+        this.key = key;
+    }
+
     private synchronized void updateLists() {
         HashSet<User> u = new HashSet<>();
         activeUsers.forEach(value -> {
@@ -206,5 +245,61 @@ public class Room  {
             System.out.println(value.getUser().getAlias());
         });
         writeObject(u);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
+
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    public void setStatic(boolean aStatic) {
+        isStatic = aStatic;
+    }
+
+    public boolean isPasswordProtected() {
+        return passwordProtected;
+    }
+
+    public void setPasswordProtected(boolean passwordProtected) {
+        this.passwordProtected = passwordProtected;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

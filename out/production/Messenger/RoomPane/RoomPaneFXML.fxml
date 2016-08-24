@@ -18,7 +18,7 @@
             <AnchorPane id="innerChatPanel" fx:id="chatPanel" minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="1146.0">
               <children>
                 <TextField fx:id="chatLine" layoutX="15.0" layoutY="670.0" prefWidth="1087.0" />
-                <ScrollPane id="ScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="31.0" opacity="1.0" pannable="false" prefHeight="583.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="1173.0" vbarPolicy="AS_NEEDED" visible="true">
+                <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="31.0" opacity="1.0" pannable="false" prefHeight="583.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="1173.0" vbarPolicy="AS_NEEDED" visible="true">
                   <content>
                     <VBox id="chatWindow" fx:id="chatBox" mouseTransparent="false" prefHeight="581.0" prefWidth="1165.0" rotate="0.0" spacing="5.0">
                       <padding>
@@ -92,6 +92,6 @@
     </AnchorPane>
   </children>
   <stylesheets>
-    <URL value="@/styleSheets/MidnightStylesheet.css" />
+    <URL value="@styleSheets/MidnightStylesheet.css" />
   </stylesheets>
 </AnchorPane>

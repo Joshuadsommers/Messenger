@@ -1,12 +1,11 @@
 package Client;
 
+import RoomPane.RoomPaneController;
 import Server.InformationMessage;
 import Server.Room;
+import Server.SerializableRoom;
 import chat.ChatPreferencesWindow;
-import chat.FontLabel;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import enums.CommandHandler;
-import enums.InformationType;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -32,6 +31,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import objects.*;
+import room_request.CreateRoomWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -237,7 +237,7 @@ public class TerminalController implements Initializable {
 
         chatSettingsImageView.setOnMouseClicked(Event -> {
 
-            if (Event.getClickCount() == 2) {
+            if (Event.getClickCount() == 1) {
                 try {
                     Application app = new ChatPreferencesWindow(this);
                     Stage stage = new Stage();
@@ -294,41 +294,23 @@ public class TerminalController implements Initializable {
 
         chromeButton.setOnAction(Event ->{
 
-          addNewTab();
 
+
+        });
+
+        createRoomButton.setOnAction(Event ->{
+            createRoom();
         });
 
     }
 
-    private void addNewTab(){
+    private void createRoom(){
 
         try {
-            URL url = getClass().getResource("/RoomPane/RoomPaneFXML.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(url);
-            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-            AnchorPane page = (AnchorPane) fxmlLoader.load(url.openStream());
-            System.out.println(fxmlLoader.getController().getClass());
-            Tab newTab = new Tab("Hey");
-
-
-            AnchorPane pane = new AnchorPane();
-            pane.setPrefWidth(1230);
-            pane.setPrefHeight(515);
-
-
-            pane.getChildren().add(page);
-
-            page.setLayoutX(12);
-            page.setLayoutY(10);
-
-            newTab.setContent(pane);
-
-            chatTabPane.getTabs().add(newTab);
-            chatTabPane.getSelectionModel().select(newTab);
-
-        }
-        catch (IOException e) {
+            Application app = new CreateRoomWindow();
+            Stage stage = new Stage();
+            app.start(stage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -369,7 +351,64 @@ public class TerminalController implements Initializable {
         System.out.println(message.getText());
         addToChatWindow(messageLabel);
 
-        if (message.getType().equals(InformationType.USER_JOINED)) addOnline(message.getUser());
+        switch(message.getType()){
+            case USER_JOINED:
+                addOnline(message.getUser());
+                break;
+
+            case USER_LEFT:
+
+                break;
+
+            case ROOM_CREATED:
+                addRoom(message.getRoom());
+                RoomHandler.addRoom(message.getRoom());
+                break;
+        }
+
+    }
+
+    private void addRoom(SerializableRoom room){
+        Thread thread = new Thread(() ->{
+
+            try {
+                URL url = getClass().getResource("/RoomPane/RoomPaneFXML.fxml");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(url);
+                fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+                AnchorPane page = (AnchorPane) fxmlLoader.load(url.openStream());
+                System.out.println(fxmlLoader.getController().getClass());
+
+
+                Tab newTab = new Tab(room.getTitle());
+
+                RoomPaneController controller = (RoomPaneController) fxmlLoader.getController();
+                controller.setKey(room.getKey());
+
+
+                AnchorPane pane = new AnchorPane();
+                pane.setPrefWidth(1230);
+                pane.setPrefHeight(515);
+
+
+                pane.getChildren().add(page);
+
+                page.setLayoutX(12);
+                page.setLayoutY(10);
+
+                newTab.setContent(pane);
+
+                chatTabPane.getTabs().add(newTab);
+                chatTabPane.getSelectionModel().select(newTab);
+
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            Thread.currentThread().interrupt();
+        });
+
+        Platform.runLater(thread);
 
     }
 
@@ -478,7 +517,6 @@ public class TerminalController implements Initializable {
     // Method is called from receive Input when a message is received from the server
     // or when we append to the client before sending to the server
     public void appendMessage(Message message) {
-
         thread = new Thread(() -> {
 
             MessageLabel messageLabel = new MessageLabel(message);

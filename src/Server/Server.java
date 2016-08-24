@@ -44,7 +44,6 @@ public class Server {
                 if (!(socket == null) && socket.isBound()) {
                   // threadPool.execute(new ChatUser(socket));
                     threadPool.execute(new ConnectionManager(socket));
-                    System.out.println(socket.getInetAddress() + " has connected.");
                 }
             }
         } catch (IOException e) {

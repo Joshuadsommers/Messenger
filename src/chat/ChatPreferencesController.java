@@ -208,12 +208,6 @@ public class ChatPreferencesController implements Initializable {
         ChatPreferences.internalFontColor = outboundFontColor;
         ChatPreferences.externalFontColor = inboundFontColor;
 
-        System.out.println(override);
-        System.out.println(outboundFont);
-        System.out.println(inboundFont);
-        System.out.println(outboundFontColor);
-        System.out.println(inboundFontColor);
-
         outboundFontFamilyBox.getChildren().forEach(child ->{
             String family = ((FontLabel) child).getFamily();
             if(family.equals(outboundFontFamily)) familyIndex = outboundFontFamilyBox.getChildren().indexOf(child);
