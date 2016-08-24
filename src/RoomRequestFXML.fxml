@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="EXCLUSION" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ToolBar layoutX="0.0" layoutY="0.0" prefWidth="709.0">
+      <items>
+        <ImageView fx:id="titleImageView" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="false" />
+        <Label text="Create Room">
+          <font>
+            <Font name="Georgia" size="12.0" />
+          </font>
+        </Label>
+      </items>
+    </ToolBar>
+    <ToolBar layoutX="709.0" layoutY="0.0" prefHeight="31.0" prefWidth="69.0">
+      <items>
+        <Button fx:id="minimizeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="" />
+        <Button fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="" />
+      </items>
+    </ToolBar>
+    <SplitPane dividerPositions="" focusTraversable="true" layoutX="0.0" layoutY="31.0" orientation="VERTICAL" prefHeight="388.0" prefWidth="778.0">
+      <items>
+        <AnchorPane fx:id="bodyPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>

@@ -30,13 +30,14 @@ public class InformationMessage implements Serializable {
 
     }
 
-    public InformationMessage(String text, User user, int key){
+    public InformationMessage(String text, User user, int key, InformationType type){
         this.text = text;
         this.user = user;
         this.key = key;
-        this.type = InformationType.USER_JOINED;
+        this.type = type;
         this.timestamp = timeStamp();
     }
+
 
     public String getTimestamp(){
         return timestamp;

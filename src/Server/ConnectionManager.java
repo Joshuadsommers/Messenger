@@ -22,6 +22,7 @@ public class ConnectionManager implements Runnable {
     private Socket socket;
 
     private User user;
+    private ChatUser chatUser;
     public ConnectionManager(Socket socket){
         this.socket = socket;
     }
@@ -77,8 +78,8 @@ public class ConnectionManager implements Runnable {
                 }
 
                 else if(input.getClass().equals(User.class)){
-                     user = (User) input;
-                    ChatUser chatUser = new ChatUser(user, out);
+                    user = (User) input;
+                    chatUser = new ChatUser(user, out);
                     RoomHandler.addUser(chatUser, 0);
 
 
@@ -90,19 +91,26 @@ public class ConnectionManager implements Runnable {
             }
 
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Connection error");
-            System.out.println(user.getAlias());
+            System.out.println(user.getAlias() + " Disconnected");
+
+
+            RoomHandler.removeUser(chatUser);
+            /*
             final ChatUser[] removedUser = new ChatUser[1];
             RoomHandler.getRooms().values().forEach(room -> {
                 Room temp = (Room) room;
                 temp.getActiveUsers().forEach(u -> {
-                   if(((ChatUser) u).getUser().getAlias().equals(user.getAlias())) {
+                   if(u.getUser().getAlias().equals(user.getAlias())) {
                        removedUser[0] = u;
                        return;
                    }
                 });
                 temp.removeUser(removedUser[0]);
             });
+*/
+
+
+
             e.printStackTrace();
         }
 

@@ -1,5 +1,6 @@
 package Server;
 
+import enums.InformationType;
 import objects.*;
 
 import java.io.IOException;
@@ -29,9 +30,6 @@ public class Room  {
     private String password; // The password for a password protected room.
     private boolean passwordProtected = false;
 
-    public static HashSet<ChatUser> getActiveUsers() {
-        return activeUsers;
-    }
 
     public static HashSet<ChatUser> activeUsers = new HashSet<>(); // Global Array of all Active Users
 
@@ -88,8 +86,6 @@ public class Room  {
 
         activeUsers.forEach(i -> { // For each user in this room
             if(!(message.getUser().equals(i.getUser()))) { // if user is not the one who sent message
-                System.out.println(message.getUser());
-                System.out.println(i.getUser());
                 try {
                     i.getOutput().writeObject(message); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
                     i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
@@ -145,8 +141,6 @@ public class Room  {
 
         activeUsers.forEach(i -> { // For each user in this room
             if(!(command.getUser().equals(i.getUser()))) { // if user is not the one who sent message
-                System.out.println(command.getUser());
-                System.out.println(i.getUser());
                 try {
                     i.getOutput().writeObject(command); // Write to the Client's OutputStream the message received from the @FinalClass ConnectionManager
                     i.getOutput().flush(); // Flushes the stream to ensure all bytes were sent across.
@@ -165,7 +159,7 @@ public class Room  {
      */
 
     public void addUser(ChatUser user){
-        InformationMessage newUserMessage = new InformationMessage("User: [" + user.getUser().getAlias() + "] has Connected.", user.getUser(), key);
+        InformationMessage newUserMessage = new InformationMessage("User: [" + user.getUser().getAlias() + "] has Connected.", user.getUser(), key, InformationType.USER_JOINED);
         writeObject(newUserMessage);
         activeUsers.add(user); // Adds new user to room
         updateLists();
@@ -182,24 +176,18 @@ public class Room  {
 
     public void removeUser(ChatUser user){
 
-        if(activeUsers.contains(user)){
-            System.out.println("Contained user: [" + user.getUser().getAlias() + "]");
-            activeUsers.remove(user);
-            RoomHandler.activeUsers.remove(user);
-
-        }
-
-        updateLists();
-        updateLists();
+        activeUsers.remove(user);
 
 
-        if(activeUsers.size() == 0){
+
+        if(activeUsers.size() == 0 && getKey() != 0){
             closeRoom(); // Closes this instance of Room
         }
 
         else {
-            InformationMessage newUserMessage = new InformationMessage("User: [" + user.getUser().getAlias() + "] has Disconnected.", user.getUser(), key);
+            InformationMessage newUserMessage = new InformationMessage("User: [" + user.getUser().getAlias() + "] has Disconnected.", user.getUser(), key, InformationType.USER_LEFT);
             writeObject(newUserMessage);
+            updateLists();
         }
     }
 

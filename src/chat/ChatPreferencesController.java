@@ -224,7 +224,7 @@ public class ChatPreferencesController implements Initializable {
             if(color.equals(outboundFontColor)) colorIndex = outboundFontColorBox.getChildren().indexOf(child);
         });
 
-        controller.updateFonts(familyIndex, colorIndex);
+       // controller.updateFonts(familyIndex, colorIndex);
         closeWindow();
     }
 

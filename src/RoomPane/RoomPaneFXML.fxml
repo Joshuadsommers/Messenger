@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPanel" blendMode="GREEN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="1517.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="RoomPane.RoomPaneController">
+  <children>
+    <AnchorPane id="Content" layoutX="-12.0" layoutY="-9.0" minHeight="0.0" minWidth="0.0" prefHeight="732.0" prefWidth="1543.0">
+      <children>
+        <SplitPane focusTraversable="true" layoutX="13.0" layoutY="12.0" orientation="VERTICAL" prefHeight="705.0" prefWidth="1204.0">
+          <items>
+            <AnchorPane id="innerChatPanel" fx:id="chatPanel" minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="1146.0">
+              <children>
+                <TextField fx:id="chatLine" layoutX="15.0" layoutY="670.0" prefWidth="1087.0" />
+                <ScrollPane id="ScrollPane" fx:id="chatWindowScrollPane" disable="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="14.0" layoutY="31.0" opacity="1.0" pannable="false" prefHeight="583.0" prefViewportHeight="514.0" prefViewportWidth="898.0" prefWidth="1173.0" vbarPolicy="AS_NEEDED" visible="true">
+                  <content>
+                    <VBox id="chatWindow" fx:id="chatBox" mouseTransparent="false" prefHeight="581.0" prefWidth="1165.0" rotate="0.0" spacing="5.0">
+                      <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                    </VBox>
+                  </content>
+                </ScrollPane>
+                <Button layoutX="1112.0" layoutY="671.0" mnemonicParsing="false" prefWidth="76.0" text="Send">
+                  <font>
+                    <Font name="Verdana" size="12.0" fx:id="x1" />
+                  </font>
+                </Button>
+                <ImageView fx:id="attachmentImageView" fitHeight="22.0" fitWidth="33.000099182128906" layoutX="129.0" layoutY="631.0" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+                  <effect>
+                    <ColorAdjust brightness="0.6412213740458015" contrast="1.0" hue="0.6488549618320612" saturation="-0.09160305343511443" />
+                  </effect>
+                  <image>
+                    <Image url="@../Images/attachmentIcon.png" />
+                  </image>
+                </ImageView>
+                <ImageView id="chatSettingsImageView" fx:id="fontImageView" blendMode="GREEN" fitHeight="21.999977111816406" fitWidth="27.999977111816406" layoutX="78.0" layoutY="631.0" pickOnBounds="true" preserveRatio="false">
+                  <effect>
+                    <ColorAdjust brightness="0.38167938931297707" contrast="0.01526717557251911" hue="0.23664122137404586" saturation="0.33587786259541996" />
+                  </effect>
+                  <image>
+                    <Image url="@../../../../../Pictures/ProgrammingPictures/font_icon.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="commandsImageView" blendMode="EXCLUSION" fitHeight="32.75006103515625" fitWidth="43.666748046875" layoutX="15.0" layoutY="626.0" pickOnBounds="true" preserveRatio="false">
+                  <effect>
+                    <ColorAdjust brightness="0.16793893129770998" contrast="0.4045801526717556" hue="0.6030534351145038" saturation="0.9618320610687023" />
+                  </effect>
+                  <image>
+                    <Image url="@../../../../../Pictures/ProgrammingPictures/command_icon.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="historyImageView" blendMode="GREEN" fitHeight="31.000099999997474" fitWidth="36.666725158691406" layoutX="180.0" layoutY="626.0" opacity="1.0" pickOnBounds="true" preserveRatio="false">
+                  <image>
+                    <Image url="@../../../../../Pictures/ProgrammingPictures/history_icon.png" />
+                  </image>
+                </ImageView>
+                <Label font="$x1" layoutX="16.0" layoutY="7.0" text="Room Key:" />
+                <Label fx:id="keyLabel" font="$x1" layoutX="85.0" layoutY="7.0" text="[0]" />
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+        <SplitPane focusTraversable="true" layoutX="1218.0" layoutY="12.0" orientation="VERTICAL" prefHeight="705.0" prefWidth="311.0">
+          <items>
+            <AnchorPane fx:id="onlineListPane" minHeight="0.0" minWidth="0.0" prefHeight="704.0" prefWidth="309.0">
+              <children>
+                <Label fx:id="membersPresentLabel" layoutX="85.0" layoutY="15.0" text="Members Present: [0]">
+                  <font>
+                    <Font name="Verdana Bold" size="12.0" />
+                  </font>
+                </Label>
+                <ScrollPane id="ScrollPane" hbarPolicy="NEVER" layoutX="14.0" layoutY="45.0" prefHeight="567.0" prefViewportHeight="511.0" prefViewportWidth="283.0" prefWidth="281.0">
+                  <content>
+                    <VBox fx:id="onlineBox" prefHeight="545.0" prefWidth="272.0" />
+                  </content>
+                </ScrollPane>
+                <Button fx:id="joinRoomButton" font="$x1" layoutX="15.0" layoutY="618.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="281.0" text="Join Room" />
+                <Button fx:id="createRoomButton" font="$x1" layoutX="15.0" layoutY="645.0" mnemonicParsing="false" prefWidth="281.0" text="Create Room" />
+                <Button id="createRoomButton" fx:id="leaveRoomButton" font="$x1" layoutX="15.0" layoutY="671.0" mnemonicParsing="false" prefWidth="281.0" text="Leave Room" />
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+      </children>
+    </AnchorPane>
+  </children>
+  <stylesheets>
+    <URL value="@styleSheets/MidnightStylesheet.css" />
+  </stylesheets>
+</AnchorPane>

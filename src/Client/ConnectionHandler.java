@@ -19,25 +19,17 @@ import java.util.HashSet;
  * Created by Adam on 4/11/2016.
  */
 
-public class ConnectionHandler implements Runnable {
+public final class ConnectionHandler implements Runnable {
 
-    boolean isConnected = false;
+    static boolean isConnected = false;
 
-    Socket socket;
-    private User user;
-    TerminalController terminal;
+    static Socket socket;
 
     private static ObjectInputStream input;
     private static ObjectOutputStream output;
 
-    public ConnectionHandler(User user, TerminalController terminal){
 
-        this.user = user;
-        this.terminal = terminal;
-
-    }
-
-    public void connect(){
+    public static void connect(){
         while(!isConnected){
             try {
                 String IP = "127.0.0.1";           //"52.43.163.58";
@@ -62,12 +54,12 @@ public class ConnectionHandler implements Runnable {
 
     }
 
-    private void whileConnected(){
+    private static void whileConnected(){
         isConnected = true;
 
-        MasterClass.client.append(new InformationMessage("You have joined Global chat.", 0));
+        MasterClass.client.append(new InformationMessage("You have joined Global Chat.", 0));
 
-        sendMessage(user);
+        sendMessage(MasterClass.user);
 
         while(true){
 
@@ -75,32 +67,22 @@ public class ConnectionHandler implements Runnable {
 
                 Object rawInput = input.readObject();
 
-
-
                 if(rawInput.getClass().equals(Message.class)){
-
                     Message message = (Message) rawInput;
-
-                    terminal.appendMessage(message);
-
+                    MasterClass.client.appendMessage(message);
                 }
 
                 else if(rawInput.getClass().equals(Command.class)){
-
                     Command command = (Command) rawInput;
-
                     CommandHandler.receiveCommand(command);
-
                 }
 
                 else if(rawInput.getClass().equals(InformationMessage.class)){
                     InformationMessage message = (InformationMessage) rawInput;
-
                     MasterClass.client.receiveInformationMessage(message);
                 }
 
                 else if(rawInput.getClass().equals(HashSet.class)) {
-                    System.out.println("Hits Connection Handler");
                     MasterClass.client.updateList( (HashSet) rawInput);
                 }
 
@@ -123,7 +105,7 @@ public class ConnectionHandler implements Runnable {
 
     }
 
-    public void sendMessage(Object message){
+    public static void sendMessage(Object message){
         try {
             output.writeObject(message);
             output.flush();

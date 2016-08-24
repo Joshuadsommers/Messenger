@@ -15,10 +15,10 @@ import java.util.Map;
 public final class ChatPreferences {
 
     public static boolean overrideExternalFonts = false;
-    public static Font externalFont;
-    public static Font internalFont;
-    public static Color externalFontColor;
-    public static Color internalFontColor;
+    public static Font externalFont = new Font("Verdana", 14);
+    public static Font internalFont = new Font("Georgia", 14);
+    public static Color externalFontColor = Color.LAWNGREEN;
+    public static Color internalFontColor = Color.AQUA;
 
     private static double r;
     private static double g;
@@ -27,6 +27,8 @@ public final class ChatPreferences {
     public static List<String> fonts = javafx.scene.text.Font.getFamilies();
 
     public static Map<String, Color> colorMap = getColors();
+
+    public static int fontSize = 14;
 
     public static boolean isHidden = false;
 
