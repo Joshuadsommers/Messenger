@@ -33,12 +33,10 @@ import javafx.stage.Stage;
 import objects.*;
 import room_request.CreateRoomWindow;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -50,23 +48,14 @@ public class TerminalController implements Initializable {
 
 
     private ClassLoader classLoader = this.getClass().getClassLoader();
-    //private ConnectionHandler connectionHandler;
 
     private boolean expanded = false;
+
     private Thread translationThread;
-
-    public ArrayList<Room> activeRooms = new ArrayList<>();
-
     private Thread thread;
-    private String fontType = "Verdana";
-    private Color fontColor = Color.BLUE;
 
-
-    private int fontSize = 14;
-    private int fontStyle;
     private double xOffset;
     private double yOffset;
-
 
     ArrayList<Label> history = new ArrayList<>();
 
@@ -148,7 +137,6 @@ public class TerminalController implements Initializable {
         chromeImageView.setImage(new Image("Images/chrome_icon.png"));
 
 
-        //chatTabPane.setBackground(new Background(new BackgroundFill(Color.rgb(240, 240, 240), CornerRadii.EMPTY, Insets.EMPTY)));
         chatTabPane.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY)));
         innerChatPanel.setBackground(new Background(new BackgroundFill(Color.rgb(235, 235, 235), CornerRadii.EMPTY, Insets.EMPTY)));
         onlineListPane.setBackground(new Background(new BackgroundFill(Color.rgb(235, 235, 235), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -159,7 +147,6 @@ public class TerminalController implements Initializable {
 
         chatWindowScrollPane.vvalueProperty().bind(chatWindow.heightProperty());
 
-        //centerPanel.toFront();
         chatTabPane.toFront();
 
 
@@ -304,10 +291,14 @@ public class TerminalController implements Initializable {
 
     }
 
-    private void createRoom(){
+    public void createRoom(){
 
         try {
-            Application app = new CreateRoomWindow();
+            HashSet<User> currentlyOnline = new HashSet<>();
+            onlineBox.getChildren().forEach(child ->{
+                currentlyOnline.add(((UserLabel) child).getUser());
+            });
+            Application app = new CreateRoomWindow(currentlyOnline);
             Stage stage = new Stage();
             app.start(stage);
         } catch (Exception e) {
@@ -379,17 +370,14 @@ public class TerminalController implements Initializable {
                 AnchorPane page = (AnchorPane) fxmlLoader.load(url.openStream());
                 System.out.println(fxmlLoader.getController().getClass());
 
-
                 Tab newTab = new Tab(room.getTitle());
 
                 RoomPaneController controller = (RoomPaneController) fxmlLoader.getController();
                 controller.setKey(room.getKey());
 
-
                 AnchorPane pane = new AnchorPane();
                 pane.setPrefWidth(1230);
                 pane.setPrefHeight(515);
-
 
                 pane.getChildren().add(page);
 
@@ -526,7 +514,7 @@ public class TerminalController implements Initializable {
                 messageLabel.setFont(ChatPreferences.externalFont);
                 messageLabel.setTextFill(ChatPreferences.externalFontColor);
             } else {
-                messageLabel.setFont(new javafx.scene.text.Font(message.getFont(), fontSize));
+                messageLabel.setFont(new javafx.scene.text.Font(message.getFont(), ChatPreferences.fontSize));
                 messageLabel.setTextFill(Color.color(message.getR(), message.getG(), message.getB()));
             }
             messageLabel.setMaxSize(chatWindow.getWidth() - 25, chatWindow.getHeight());

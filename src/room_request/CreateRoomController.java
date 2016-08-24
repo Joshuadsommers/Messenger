@@ -2,6 +2,7 @@ package room_request;
 
 import Client.RoomHandler;
 import Server.Room;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -13,8 +14,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import objects.MasterClass;
+import objects.User;
+import objects.UserLabel;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 
 /**
@@ -23,6 +27,10 @@ import java.util.ResourceBundle;
 public class CreateRoomController implements Initializable {
 
     private ClassLoader classLoader = this.getClass().getClassLoader();
+
+    private HashSet<User> onlineList;
+    private HashSet<User> inviteList = new HashSet<>();
+
     private Room room;
 
     int key;
@@ -42,7 +50,13 @@ public class CreateRoomController implements Initializable {
         setGraphics();
         setPreferences();
         createListeners();
+        populateList();
 
+    }
+
+    public void start(HashSet<User> onlineList){
+        this.onlineList = onlineList;
+        MasterClass.client.disable();
     }
 
     private void setGraphics() {
@@ -67,6 +81,58 @@ public class CreateRoomController implements Initializable {
 
         passwordField.setDisable(true);
         keyField.setDisable(true);
+
+
+
+
+    }
+
+    private void populateList(){
+        Thread thread = new Thread(() ->{
+
+            onlineList.forEach(child ->{
+                UserLabel label = new UserLabel((User) child);
+                label.setOnMouseClicked(Event ->{
+                    if(Event.getClickCount() == 2){
+                        System.out.println(((UserLabel) Event.getSource()).getUser().getAlias());
+                        addToInviteList(((UserLabel) Event.getSource()).getUser());
+                    }
+                });
+
+                currentlyOnlineBox.getChildren().add(label);
+
+            });
+            onlineLabel.setText("Currently Online: [" + onlineList.size() + "]");
+        });
+        Platform.runLater(thread);
+    }
+
+    private void addToInviteList(User user){
+        if(!inviteList.contains(user)){
+            inviteList.add(user);
+
+            Thread thread = new Thread(() ->{
+                UserLabel label = new UserLabel(user);
+                label.setOnMouseClicked(Event ->{
+                    if(Event.getClickCount() == 2) {
+                        removeFromInviteList(label.getUser());
+                        invitedBox.getChildren().remove(label);
+                    }
+                });
+                invitedBox.getChildren().add(label);
+                invitedLabel.setText("Pending Invites: [" + inviteList.size() + "]");
+            });
+            Platform.runLater(thread);
+        }
+
+
+    }
+
+    private void removeFromInviteList(User user){
+        inviteList.remove(user);
+        invitedLabel.setText("Pending Invites: [" + inviteList.size() + "]");
+
+
     }
 
 
@@ -95,10 +161,33 @@ public class CreateRoomController implements Initializable {
             isPublic = publicCheckBox.isSelected();
         });
 
+        keyField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.matches("\\d*")) {
+
+                try {
+                    int value = Integer.parseInt(newValue);
+                    if (value > 50000 || value < -50000 || value == 0) {
+                        keyField.setText(oldValue);
+                    }
+                } catch (NumberFormatException e) {
+                    return;
+                }
+
+            } else {
+                keyField.setText(oldValue);
+            }
+
+        });
+
     }
 
     private void saveAndClose(Room room) {
         RoomHandler.requestRoom(room);
+        if(inviteList.size() > 0){
+            RoomHandler.inviteGroup(inviteList, room);
+        }
+
+
         closeWindow();
     }
 
@@ -156,7 +245,7 @@ public class CreateRoomController implements Initializable {
     }
 
     private void closeWindow() {
-
+        MasterClass.client.enable();
         ((Stage) mainPanel.getScene().getWindow()).close();
     }
 
@@ -172,6 +261,12 @@ public class CreateRoomController implements Initializable {
 
     @FXML
     private Label helpLabel;
+
+    @FXML
+    private Label onlineLabel;
+
+    @FXML
+    private Label invitedLabel;
 
     @FXML
     private AnchorPane bodyPanel;

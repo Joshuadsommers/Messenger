@@ -43,11 +43,17 @@ public class RoomPaneController implements Initializable {
     private int roomKey;
     private Thread thread;
 
+    private HashSet<User> onlineList;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setGraphics();
         setPreferences();
         createListeners();
+    }
+
+    public void start(HashSet<User> onlineList){
+        this.onlineList = onlineList;
     }
 
     private void setGraphics(){
@@ -85,6 +91,7 @@ public class RoomPaneController implements Initializable {
 
     private void setPreferences(){
         chatWindowScrollPane.vvalueProperty().bind(chatBox.heightProperty());
+
     }
 
     private void createListeners(){
@@ -141,29 +148,25 @@ public class RoomPaneController implements Initializable {
         };
         commandsImageView.setOnMouseEntered(mouseEntered);
         historyImageView.setOnMouseEntered(mouseEntered);
-
+        fontImageView.setOnMouseEntered(mouseEntered);
 
 
         commandsImageView.setOnMouseExited(mouseExited);
         historyImageView.setOnMouseExited(mouseExited);
-
+        fontImageView.setOnMouseExited(mouseExited);
 
 
         createRoomButton.setOnAction(Event ->{
             createRoom();
         });
 
+
+
     }
 
     private void createRoom(){
 
-        try {
-            Application app = new CreateRoomWindow();
-            Stage stage = new Stage();
-            app.start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        MasterClass.client.createRoom();
 
     }
 
@@ -178,6 +181,7 @@ public class RoomPaneController implements Initializable {
 
     public void setKey(int roomKey){
        this.roomKey = roomKey;
+        keyLabel.setText("[" + roomKey + "]");
     }
 
     private void sendCommand(String text) {

@@ -6,9 +6,11 @@ import Server.SerializableRoom;
 import Server.ServerRequest;
 import enums.RequestType;
 import objects.MasterClass;
+import objects.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Created by Adam on 8/19/2016.
@@ -25,14 +27,19 @@ public final class RoomHandler {
         return currentRoomKey;
     }
 
+    public static void inviteGroup(HashSet<User> group, Room room){
+        ServerRequest request = new ServerRequest(room.getOwner(), RequestType.GROUP_INVITE, room, group);
+        ConnectionHandler.sendMessage(request);
+    }
+
+    public static void invitePerson
+
     public static void requestRoom(Room room){
         ConnectionHandler.sendMessage(new ServerRequest(MasterClass.user, RequestType.ROOM_REQUEST, room));
     }
 
     public static void addRoom(SerializableRoom room){
         activeRooms.add(new Room(room));
-        System.out.println("Room added");
-        System.out.println(room.getKey());
     }
 
     public  static void addTab(int key, RoomPaneController controller){

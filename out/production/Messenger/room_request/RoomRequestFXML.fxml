@@ -61,8 +61,8 @@
                 <VBox fx:id="invitedBox" prefHeight="321.0" prefWidth="200.0" />
               </content>
             </ScrollPane>
-            <Label font="$x1" layoutX="347.0" layoutY="14.0" text="Currently Online: [0]" />
-            <Label font="$x1" layoutX="611.0" layoutY="14.0" text="Invited: [0]" />
+            <Label fx:id="onlineLabel" font="$x1" layoutX="347.0" layoutY="14.0" text="Currently Online: [0]" />
+            <Label fx:id="invitedLabel" font="$x1" layoutX="582.0" layoutY="14.0" text="Pending Invites: [0]" />
             <CheckBox fx:id="publicCheckBox" font="$x2" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Public" />
             <Label font="$x1" layoutX="16.0" layoutY="198.0" text="Description" underline="true" />
             <TextArea fx:id="descriptionField" layoutX="14.0" layoutY="220.0" prefHeight="118.0" prefWidth="287.0" wrapText="true" />

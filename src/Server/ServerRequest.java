@@ -10,7 +10,7 @@ public class ServerRequest extends MessageToServer {
 
     private RequestType type;
     private Room room;
-
+    private Object object;
     public ServerRequest(User user) {
         super(user);
     }
@@ -19,6 +19,13 @@ public class ServerRequest extends MessageToServer {
         super(user);
         this.type = type;
         this.room = room;
+    }
+
+    public ServerRequest(User user, RequestType type, Room room, Object object){
+        super(user);
+        this.type = type;
+        this.room = room;
+        this.object = object;
     }
 
     public RequestType getType() {
@@ -35,5 +42,13 @@ public class ServerRequest extends MessageToServer {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
     }
 }

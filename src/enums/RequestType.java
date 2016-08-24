@@ -7,6 +7,6 @@ import java.io.Serializable;
  */
 public enum RequestType implements Serializable {
 
-    PRIVATE_MESSAGE, ROOM_INVITE, ROOM_REQUEST, CUSTOM_ROOM_REQUEST, CLOSE_ROOM, CLEAR_SCREEN, ALERT
+    PRIVATE_MESSAGE, ROOM_INVITE, ROOM_REQUEST, GROUP_INVITE, CLOSE_ROOM,  ALERT
 
 }
