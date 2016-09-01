@@ -32,7 +32,7 @@ public final class RoomHandler {
         ConnectionHandler.sendMessage(request);
     }
 
-    public static void invitePerson
+   // public static void invitePerson
 
     public static void requestRoom(Room room){
         ConnectionHandler.sendMessage(new ServerRequest(MasterClass.user, RequestType.ROOM_REQUEST, room));

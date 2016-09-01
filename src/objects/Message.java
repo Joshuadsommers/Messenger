@@ -3,13 +3,16 @@ package objects;
 import enums.InformationType;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
-<<<<<<< HEAD
+ <<<<<<< HEAD
  * Created by Josh on 8/15/2016.
-=======
+ =======
  * Created by Adam on 8/14/2016.
->>>>>>> origin/master
+ >>>>>>> origin/master
  */
 public class Message implements Serializable {
 
@@ -17,6 +20,10 @@ public class Message implements Serializable {
 
 
     private User user;
+
+    private static DateFormat dateFormat = new SimpleDateFormat("[MM/dd/YYYY HH:mm:ss] ");
+    private static Calendar cal = Calendar.getInstance();
+
 
     private int key;
     private String font;
@@ -69,7 +76,7 @@ public class Message implements Serializable {
     }
 
     private String timeStamp(){
-        return MasterClass.timeStamp();
+        return dateFormat.format(cal.getTime());
     }
 
     public String getTimeStamp() {
