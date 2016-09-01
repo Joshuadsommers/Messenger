@@ -31,6 +31,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import objects.*;
+import preferences.*;
 import room_request.CreateRoomWindow;
 
 import java.awt.*;
@@ -180,6 +181,10 @@ public class TerminalController implements Initializable {
 
     }
 
+    public void requestFocus(){
+        mainPanel.getScene().getWindow().requestFocus();
+    }
+
     private void createListeners() {
 
         menuButton.setOnAction(Event -> {
@@ -187,6 +192,12 @@ public class TerminalController implements Initializable {
                 collapse();
             } else expand();
         });
+
+        minimizeButton.setOnAction(Event ->{
+            ((Stage) mainPanel.getScene().getWindow()).setIconified(true);
+        });
+
+
 
         titleBar.setOnMousePressed(Event -> {
             xOffset = titleBar.getScene().getWindow().getX() - MouseInfo.getPointerInfo().getLocation().getX();
@@ -345,10 +356,12 @@ public class TerminalController implements Initializable {
         switch(message.getType()){
             case USER_JOINED:
                 addOnline(message.getUser());
+                if(FocusManager.focusOnUserJoined) requestFocus();
                 break;
 
             case USER_LEFT:
 
+                if(FocusManager.focusOnUserLeft) requestFocus();
                 break;
 
             case ROOM_CREATED:
@@ -522,6 +535,8 @@ public class TerminalController implements Initializable {
 
 
             chatWindow.getChildren().add(messageLabel);
+
+            if(FocusManager.focusOnGlobalMessage) requestFocus();
 
 
         });

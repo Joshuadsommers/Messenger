@@ -34,6 +34,8 @@ public class TerminalWindow extends Application {
             AnchorPane page = fxmlLoader.load();
 
             Scene scene = new Scene(page);
+            page.setScaleX(.835);
+            page.setScaleY(.887);
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
             primaryStage.show();
